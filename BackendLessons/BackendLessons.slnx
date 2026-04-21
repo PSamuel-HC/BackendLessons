@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BackendLessons/BackendLessons.csproj" />
+  <Project Path="BackendLessonsModern/BackendLessonsModern.csproj" />
+</Solution>

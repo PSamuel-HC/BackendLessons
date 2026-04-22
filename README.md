@@ -28,7 +28,7 @@ Console.WriteLine(d1 + d2 == 0.3m); // Output: True
 ```
 
 As we saw on the last session, and according to the IEEE 754 standard, converting a decimal to
-binary to be stored requires a division to calculate the binary digits that represent that same
+binary to be stored requires an operation to calculate the binary digits that represent that same
 decimal number. But the only way that the decimal number gets an exact binary number is that the
 decimal part is represented by the division of 1 by a power of 2 (1/2ⁿ), so numbers like 0.5 (1/2),
 0.25 (1/4), 0.125 (1/8) etc are the only ones getting an exact binary, the rest will be represented

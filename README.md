@@ -43,3 +43,24 @@ Using **decimal** solves this to some extend, not only because it has more bytes
 data type tries to store the number in decimal base, so 0.1 is actually stored as 1 (and the program
 knows that when is used, it has to divide it again by 10 to have 0.1 again). This allows to have more
 precise calculations, because 0.1m, 0.2m and 0.3m are actually 0.1, 0.2 and 0.3.
+
+
+## Excersice 2 - Records, are they value or reference type?
+Value types are the data types that stores the value itself, and when creating another variable and 
+assign the contents of the first variable, what is copied is the value itself
+```csharp
+int a = 1;
+int b = a // b is receiving 1;
+```
+
+Reference types are data types that stores the reference of the value, which means, the memory address
+of that value. So when copying a variable to another, what is actually coping is the memory address
+of that value.
+```csharp
+string a = "Hello World";
+string b = a // b is the memory address of the value "Hello World";
+```
+
+Records are mostly a reference type used to create an immutable object, primarily for encapsulating data,
+so they can be used for example to create DTOs, or any other reference to a data shape. Only when used
+with structs, they behave as value type. See [Program.cs](Program.cs) to have a clear example of this.

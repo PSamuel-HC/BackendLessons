@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="BackendLessons/BackendLessons.csproj" />
   <Project Path="BackendLessonsModern/BackendLessonsModern.csproj" />
+  <Project Path="Homework-01/Homework-01.csproj" Id="218e9709-daf5-4b46-b557-2e2cc549537b" />
 </Solution>

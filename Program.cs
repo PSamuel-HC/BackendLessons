@@ -55,6 +55,23 @@ Console.WriteLine($"pet1 (Pet) == pet2 (copy of pet1) -> {pet1 == pet2} (this co
 Console.WriteLine($"object.ReferenceEquals(pet1, pet2) -> {object.ReferenceEquals(pet1, pet2)} (this compares the reference)");
 Console.WriteLine("The value is equal, but not the reference, which means a different object was created.");
 
+// Third excersie example - Strong typing
+Console.WriteLine("\n");
+Console.WriteLine("====================================");
+Console.WriteLine("Third excersice example");
+Console.WriteLine("====================================");
+Console.WriteLine("\n");
+
+int number1 = 1;
+int number2 = 5;
+string word1 = "hello";
+Console.WriteLine("Uncomment lines inside code to see error examples");
+
+// This will cause a compilation error, trying to switch types -> error CS0029: Cannot implicitly convert type 'string' to 'int'
+ //number1 = "World"; // UNCOMMENT TO SEE ERROR
+
+// This will also cause an error, trying to multiply two different types -> error CS0019: Operator '*' cannot be applied to operands of type 'string' and 'int'
+//Console.WriteLine(word1 * number1); // UNCOMMENT TO SEE ERROR
 
 
 // This has to go here for the code to run correctly

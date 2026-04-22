@@ -8,6 +8,13 @@ To run this program, have dotnet installed and run on the terminal the following
 dotnet run
 ```
 
+Note: if a warning like this appears
+
+```bash
+Do not pass an argument with value type 'int' to 'ReferenceEquals'. Due to value boxing, this call to 'ReferenceEquals' can return an unexpected result. Consider using 'Equals' instead, or pass reference type arguments if you intend to use 'ReferenceEquals'. (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2013)
+```
+That's expected. Is for the excersice purposes.
+
 ## Excersice 1 - Explain this code
 
 ```csharp
@@ -64,3 +71,35 @@ string b = a // b is the memory address of the value "Hello World";
 Records are mostly a reference type used to create an immutable object, primarily for encapsulating data,
 so they can be used for example to create DTOs, or any other reference to a data shape. Only when used
 with structs, they behave as value type. See [Program.cs](Program.cs) to have a clear example of this.
+
+## Excercise 3 - Strong typing
+Languages like Python and Javascript allows devs to create variables without specifying a type,
+like this:
+```javascript
+const a = 1;
+let b = "hello";
+b = 3;
+let c;
+```
+As you see in the example, there is no rule for changing a variable from one type to another (b), or even
+creating a variable (c) that we won't know its type until a value is assigned.
+
+In staticaly, strong typed languages like C#, C, Java and others, you must assign a type to a variable
+when creating it.
+```csharp
+int number1 = 1;
+int number2 = 5;
+string word1 = "hello";
+number1 = "World"; // This will cause a compilation error, trying to switch types
+Console.WriteLine(number2 * word1) // This will also cause an error, trying to operate two different types
+```
+In these cases, the compiler will make sure that the variables are assigned and used correctly, including some operatrions
+like multiplying a string with a number (surprisingly, adding a string an a number works, but it will "cast" the int
+to a string). Talking about casting, is the process of converting on the run one variable to another, but it only works
+with certain types, for example from a int to a double.
+
+See [Program.cs](Program.cs) to check some error examples of this. The lines are commented to avoid all the program to
+crash, so is necessary to uncomment the lines.
+
+In C#, there is an exception, with the dynamic type, which has a similar behavior to the object type, with
+the difference that it won't be type checked at compile time.

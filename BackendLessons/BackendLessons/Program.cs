@@ -4,10 +4,10 @@
     {
         static void Main(string[] args)
         {
-            double largeValue = 1f; // One million
-            double smallValue = 0.1f;      // One tenth
+            float largeValue = 1000000.0f; // One million
+            float smallValue = 0.1f;      // One tenth
 
-            double result = largeValue;
+            float result = largeValue;
 
             for (int i = 0; i < 10; i++)
             {

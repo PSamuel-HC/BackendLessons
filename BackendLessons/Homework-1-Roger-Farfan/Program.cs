@@ -132,8 +132,79 @@ and a value record with very small objects.
 
 #region 3. Strong Typing
 //========================
-#endregion
+// Define "Strong Typing" and provide practical code examples demonstrating its implementation.
+Console.WriteLine("\n==============\nStrong Typing: ");
 
+/*
+ In simple terms: it's when the programming language forces you to respect
+ the data type you declared. If you say a box is for "Numbers," the language
+ won't let you put "Text" in it, not even by mistake.
+
+C# is a Type-based language.
+ */
+
+int n1 = 3;
+float n2 = 4.6f;
+
+string someString = "1234";
+
+/**
+ *Strong typing helps the compiler warn you of any inconsistencies in variables,
+ so incorrect use of data types would block code execution,
+something that doesn't happen in Javascript where there is more freedom.
+ */
+
+/*
+ It is possible to perform data type conversions, 
+especially value conversions, but this must be done explicitly using "(type)" casts or other methods:
+
+ */
+int n3 = (int)n2;
+int n4 = int.Parse(someString) + 1;
+
+string s5 = n1.ToString()+1;
+Console.WriteLine("Float number: " + n2);
+Console.WriteLine("Result number: " + n3);
+
+Console.WriteLine("String convrted in number +1: " + n4);
+
+Console.WriteLine("Number convrted in string +1: " + s5.ToString());
+
+/*
+ On the other hand, variable declarations are often simplified with the term "var,"
+which indicates that the variable will be of the same type as the assigned value. 
+However, the type cannot be changed afterward.
+ */
+
+var number6 = 8;
+Console.WriteLine("\nType: "+ number6.GetType());
+
+//number6 = "HOLA"; //ERROR
+
+/*
+ Finally, you can use "dynamic" for total freedom;
+ it is not usually recommended and is used in rare cases where you don't know what object to expect.
+ */
+
+
+
+dynamic someValue = 3;
+Console.WriteLine("\nDynamic: "+someValue);
+
+someValue = "Hola";
+Console.WriteLine("\nDynamic: " + someValue);
+
+// If there is an error, it is usually reported at runtime.
+try
+{
+    Console.WriteLine(someValue/3);
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.Message.ToUpper()+"\n");
+}
+
+#endregion
 
 
 

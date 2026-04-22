@@ -1,11 +1,9 @@
 ﻿
 
-void CodeExplanation()
-{
+#region 1. Analyze CODE    
+// 1. ANALYZE THE BEHAVIOR OF FLOATING POINT PRECISION VS. DECIMAL TYPES IN C# EQUALITY CHECKS.
 
-    // 1. ANALYZE THE BEHAVIOR OF FLOATING POINT PRECISION VS. DECIMAL TYPES IN C# EQUALITY CHECKS.
-
-    double a = 0.1;
+double a = 0.1;
     double b = 0.2;
 
     Console.WriteLine(a + b == 0.3); // false
@@ -33,8 +31,8 @@ void CodeExplanation()
     //Therefore, if we look at the true representation of double numbers, we have the following:
 
     Console.WriteLine("\nReal representation of double numbers".ToUpper());
-    Console.WriteLine(a.ToString("F20"));
-    Console.WriteLine((a+b).ToString("F20"));
+    Console.WriteLine(a.ToString("F22"));
+    Console.WriteLine((a+b).ToString("F22"));
 
 
     /*
@@ -46,10 +44,10 @@ void CodeExplanation()
     Console.WriteLine("\nDouble numbers with correct binary representation");
     double c = 0.5;
 
-    Console.WriteLine(c.ToString("F20")); // 1/2
+    Console.WriteLine(c.ToString("F22")); // 1/2
 
     double x = 0.125;
-    Console.WriteLine(x.ToString("F20")); // 1/8
+    Console.WriteLine(x.ToString("F22")); // 1/8
 
 
     /*
@@ -65,15 +63,80 @@ void CodeExplanation()
     Console.WriteLine(d1.ToString("F20"));
 
 
-    //That's why: a + b == 0.3 -->>> FALSE and d1 + d2 == 03 --->> TRUE
+//That's why: a + b == 0.3 -->>> FALSE and d1 + d2 == 03 --->> TRUE
+#endregion
 
 
-}
+#region 2. RECORDS
+//==============
+Console.WriteLine("\n==============\nRecords: ");
+//2. RECORDS:Explain why records in c# are value or reference types
+
+//Explanation
+/**
+ *By default, a "Record" is usually of type "reference". 
+ */
+
+
+Car car1 = new Car("Toyota", "XYZ", "Blue"); //Default Record;
+
+var car2 = car1;
+
+//To verify this, we can do the following:
+Console.WriteLine("Are they pointing to the same memory space?");
+
+Console.WriteLine(Object.ReferenceEquals(car1, car2));
+
+
+/*
+ As you can see, it is a reference type. 
+However, when comparing records, this type internally compares value by value.
+That is, it behaves like a "value" type only when performing COMPARISONS.
+ */
+
+var car3 = new Car("Toyota", "XYZ", "Blue");
+
+Console.WriteLine("Are car1 and car3 pointing to the same memory space?");
+Console.WriteLine(Object.ReferenceEquals(car1, car3)); //FALSE
+
+Console.WriteLine("Do they have the same values in their properties?");
+Console.WriteLine(car1 == car3);
+
+/*
+ As you can see, unlike with classes, when we use equality comparison operators, we are comparing values,
+ something that doesn't happen with classes, where a referential equality is made.
+ */
+
+
+//ON THE OTHER HAND, it is possible to use a "Record" entirely as a "Value" type, accompanying it with "Struct"
+
+var carStruct1 = new CarStruct("Toyota", "XYZ", "Blue");
+var carStruct2 = carStruct1;
+
+Console.WriteLine("\nSTRUCT\nAre car1struct and carstruct2 pointing to the same memory space?");
+Console.WriteLine(Object.ReferenceEquals(carStruct1, carStruct2));
+
+//As you can see, what happens is that a copy of the data is sent when
+//the assignment is made; the reference is not passed.
+
+
+/*Finally, you can work with the record struct normally,
+just like a normal STRUCT, but with new functionalities.*/
+
+/*
+ It is generally recommended to use a reference "Record" when dealing with very large objects,
+and a value record with very small objects.
+ */
+#endregion
+
+
+#region 3. Strong Typing
+//========================
+#endregion
 
 
 
 
+public record Car(string Brand, string Model, string Color);
 
-
-
-CodeExplanation();
+public record struct CarStruct(string Brand, string Model, string Color);

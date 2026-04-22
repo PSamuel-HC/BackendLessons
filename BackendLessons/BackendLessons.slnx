@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="BackendLessons/BackendLessons.csproj" />
   <Project Path="BackendLessonsModern/BackendLessonsModern.csproj" />
+  <Project Path="Homework-BuiltInTypesAndOperators-Luigi/Exercise1/Exercise1.csproj" Id="923b5699-b4db-4da8-8c3e-8367b69fecfb" />
+  <Project Path="Homework-BuiltInTypesAndOperators-Luigi/Exercise3/Exercise3.csproj" Id="e7e7133d-9b9d-45e1-8b2d-d19e2f942bae" />
 </Solution>

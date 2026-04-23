@@ -6,7 +6,7 @@
         {
             UserProfile user1 = new UserProfile(5, 84);
 
-            user1.Authorize();
+            //user1.Authorize();
             
             
             Calculator.Calculate();

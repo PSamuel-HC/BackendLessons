@@ -1,9 +1,9 @@
 ﻿namespace BackendLessonsModern
 {
-    enum WorkerEnum
+    enum WorkerEnun
     {
         QA,             // 0
-        Dev = 8,        // 8
+        Dev = 800,        // 8
         Manager         // 9
     }
 }

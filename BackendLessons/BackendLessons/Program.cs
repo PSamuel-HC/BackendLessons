@@ -4,17 +4,24 @@
     {
         static void Main(string[] args)
         {
-            double largeValue = 1f; // One million
-            double smallValue = 0.1f;      // One tenth
+            UserProfile user1 = new UserProfile(5, 84);
 
-            double result = largeValue;
+            user1.Authorize();
+            
+            
+            Calculator.Calculate();
 
-            for (int i = 0; i < 10; i++)
-            {
-                result += smallValue;
-            }
-            //1000001.0f
-            Console.WriteLine(result);
         }
+    }
+
+
+    public class A
+    {
+
+    }
+
+    public class B
+    {
+
     }
 }

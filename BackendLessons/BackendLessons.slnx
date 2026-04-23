@@ -2,4 +2,5 @@
   <Project Path="BackendLessons/BackendLessons.csproj" />
   <Project Path="BackendLessonsModern/BackendLessonsModern.csproj" />
   <Project Path="BrokenCode/BrokenCode.csproj" Id="a9546de9-e05a-4445-891d-903da313cba3" />
+  <Project Path="FixCode/FixCode.csproj" Id="eb571a64-fdc7-4497-b66b-e7ba218ddced" />
 </Solution>

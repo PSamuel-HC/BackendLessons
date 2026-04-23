@@ -25,8 +25,6 @@ namespace BrokenCode
             deserialize the original object. Serializing creates a JSON object based on the original
             object (like extracting its data), and the deserializing it is to create a new
             object with that JSON */
-            string backupUser1 = JsonSerializer.Serialize(primaryUser);
-            Console.WriteLine($"backupUser1 {backupUser1}");
             UserProfile backupUser = JsonSerializer.Deserialize<UserProfile>(JsonSerializer.Serialize(primaryUser))!;
 
             backupUser.UserName = "Bob";

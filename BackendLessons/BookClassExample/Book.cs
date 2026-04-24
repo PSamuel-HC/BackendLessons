@@ -20,9 +20,9 @@ sealed class Book
 
     public void ShowDetails()
     {
-        Console.WritleLine(
-            $"Book: {Title}," +
+        Console.WriteLine(
+            $"Book: {Title},\n" +
             $"Availability: {_isAvailable}"
-            )
+            );
     }
 }

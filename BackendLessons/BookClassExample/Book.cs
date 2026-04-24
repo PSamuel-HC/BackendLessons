@@ -5,7 +5,7 @@ sealed class Book
 {
     private int _id; // sensible information
     public string Title { get; set; }
-    private bool _isAvailable { get; set; } = true; // sensible information
+    private bool _isAvailable { get; set; } = true; // sensible information, should always be true
 
     public Book (string title, int id)
     {

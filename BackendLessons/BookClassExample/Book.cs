@@ -1,11 +1,10 @@
-
 /* "Other objects shouldn't be able to inherit nothing from this class"
  So that's why is sealed*/
 sealed class Book
 {
     private int _id; // sensible information
     public string Title { get; set; }
-    private bool _isAvailable { get; set; } = true; // sensible information, should always be true
+    public bool IsAvailable { get; private set; } = true; // sensible information, should always start as true. Can be read outside, but only modified inside the class.
 
     public Book (string title, int id)
     {
@@ -15,14 +14,15 @@ sealed class Book
 
     public void Checkout()
     {
-        _isAvailable = false;
+        IsAvailable = false;
     }
 
     public void ShowDetails()
     {
         Console.WriteLine(
             $"Book: {Title},\n" +
-            $"Availability: {_isAvailable}"
+            $"Availability: {IsAvailable}"
             );
     }
+
 }

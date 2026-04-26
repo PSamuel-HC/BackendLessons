@@ -5,7 +5,7 @@ using System.Text;
 namespace Homework
 {
     // Using sealed in order to avoid other class to inherit from this class
-    internal sealed class Book
+    public sealed class Book
     {
 
         // Title property can only be modified by the class itself but can be read from outsite.
@@ -13,7 +13,7 @@ namespace Homework
 
         public string Title { get; private set; }
         private int Id { get; set; }
-        private bool IsAvailable { get; set; }
+        public bool IsAvailable { get; private set; } // We had to change this in order to access availability
 
         public Book (string title, int id)
         {

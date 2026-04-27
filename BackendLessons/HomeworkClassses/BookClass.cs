@@ -58,6 +58,7 @@ namespace HomeworkClassses
             }
         }
 
+        //we needed to create this because the helper class needed to see the availability of the books and its private so we can pass it through a method
         public bool CheckAvailability()
         {
             return IsAvailable;

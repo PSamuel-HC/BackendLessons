@@ -1,27 +1,32 @@
-﻿namespace ClassesAndAccessModifiers
+﻿using System.Security.Cryptography;
+
+namespace ClassesAndAccessModifiers
 {
     public class Book
     {
         public string Title { get; set; }
-        private int Id { get; set; }
-        private bool IsAvailable { get; set; }
+        private int _Id { get; set; }
+        private bool _IsAvailable { get; set; }
 
         public Book(string title, int id)
         {
             Title = title;
-            Id = id;
-            IsAvailable = true;
+            _Id = id;
+            _IsAvailable = true;
         }
 
         public void Checkout()
         {
-            IsAvailable = !IsAvailable;
+            _IsAvailable = !_IsAvailable;
         }
 
         public void ShowDetails()
         {
             Console.WriteLine($"Title: {Title}");
-            Console.WriteLine($"Availability: {IsAvailable}");
+            Console.WriteLine($"Availability: {_IsAvailable}");
         }
+
+        public bool IsAvailable => _IsAvailable;
+        public int Id => _Id;
     }
 }

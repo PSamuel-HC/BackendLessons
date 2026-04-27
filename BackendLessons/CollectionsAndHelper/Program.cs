@@ -1,38 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using CollectionsAndHelpers.Classes;
+using CollectionsAndHelpers.Helpers;
 
 namespace CollectionsAndHelpers
 {
-    class Book
-    {
-        public string Title { get; set; }
-        public bool IsAvailable { get; set; }
-
-        public Book(string title, bool isAvailable)
-        {
-            Title = title;
-            IsAvailable = isAvailable;
-        }
-    }
-
-    class BookHelper
-    {
-        public static int CountAvailableBooks(List<Book> books)
-        {
-            int count = 0;
-
-            foreach (Book book in books)
-            {
-                if (book.IsAvailable)
-                {
-                    count++;
-                }
-            }
-
-            return count;
-        }
-    }
-
     class Program
     {
         static void Main(string[] args)

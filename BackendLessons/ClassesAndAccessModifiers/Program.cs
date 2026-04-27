@@ -8,7 +8,7 @@ namespace ClassesAndAccessModifiers
         public string Title { get; set; }
         public int Id { get; private set; }
         
-        public bool IsAvailable
+        public bool IsAvailable { get; private set; }
         // protected with private set: you can read the values, but only the class can modify them
         public Book(string title, int id)
         {

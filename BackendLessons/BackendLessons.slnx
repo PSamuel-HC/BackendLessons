@@ -3,4 +3,5 @@
   <Project Path="BackendLessonsModern/BackendLessonsModern.csproj" />
   <Project Path="BrokenCode/BrokenCode.csproj" Id="a9546de9-e05a-4445-891d-903da313cba3" />
   <Project Path="ClassesAndAccessModifiers/ClassesAndAccessModifiers.csproj" Id="7c8b2547-7aef-4502-b028-f641de4c9fa7" />
+  <Project Path="CollectionsAndHelper/CollectionsAndHelper.csproj" Id="4dcdd67b-3cba-4a75-80dc-9483aee60676" />
 </Solution>

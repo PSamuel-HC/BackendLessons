@@ -12,13 +12,16 @@ namespace HomeworkClassses
         // private to protect it 
         private int Id { get; set; }
         // private to protect it 
-        private Boolean IsAvailable { get; set; }
+        private bool IsAvailable { get; set; }
+
+        private string[] Genres { get; set; }
 
         // constructor that receives two arguments and set availability automatically
-        public BookClass(string title, int id) {
+        public BookClass(string title, int id, string[] genres) {
             Title = title;
             Id = id;
             IsAvailable = true;
+            Genres = genres;
         }
 
         // first method requested
@@ -29,7 +32,7 @@ namespace HomeworkClassses
             }
             else
             {
-                Console.WriteLine("Book is already not available");
+                Console.WriteLine($"{Title} is already not available");
             }
         }
 
@@ -38,7 +41,7 @@ namespace HomeworkClassses
         {
             if (IsAvailable)
             {
-                 Console.WriteLine("Book is already available");
+                 Console.WriteLine($"{Title} is already available");
             }
             else
             {
@@ -48,8 +51,16 @@ namespace HomeworkClassses
 
         //second method requested
         public void ShowDetails()
+        { 
+            Console.WriteLine("Title: " + Title + ", Is this book available? " + IsAvailable + " Genres:");
+            foreach (string genre in Genres) {
+                Console.WriteLine(genre);
+            }
+        }
+
+        public bool CheckAvailability()
         {
-            Console.WriteLine("Title: " + Title + ", Is this book available? " + IsAvailable);
+            return IsAvailable;
         }
     }
 }

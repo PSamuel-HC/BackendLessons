@@ -9,20 +9,23 @@ namespace HomeworkClassesAndAccessModifiers
     {
         public string Title { get;}
         private int _id;
-        private bool _isAvilable;
+        private bool _isAvailable;
 
         public Book (string title, int id)
         {
             Title = title;
             _id = id;
-            _isAvilable = true;
+            _isAvailable = true;
         }
+
+        public bool IsAvailable => _isAvailable;
+
         public void Checkout() {
-            _isAvilable = !_isAvilable;
+            _isAvailable = !_isAvailable;
         }
         public void ShowDetails() {
             Console.WriteLine($"Title:{Title}");
-            Console.WriteLine($"Available:{_isAvilable}");
+            Console.WriteLine($"Available:{_isAvailable}");
         }
     }
 }

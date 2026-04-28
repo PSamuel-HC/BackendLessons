@@ -1,4 +1,5 @@
 ﻿using Jalasoft.GoldenRecord;
+using Jalasoft.GoldenRecord.Models;
 using System.Collections;
 
 namespace BackendLessons
@@ -7,13 +8,19 @@ namespace BackendLessons
     {
         static void Main(string[] args)
         {
-            Response<User> userResponse = new Response<User>();
+            User user1 = new User();
+            User user2 = new User(Guid.NewGuid(), "Juan");
 
-            Response<Product> productResponse = new Response<Product>();
+            Product product1 = new Product { };
+            Product product2 = new Product { };
 
-            Response<Page<User>> userPaginatedResponse = new Response<Page<User>>();
+            Console.WriteLine($"This is user1 guid: {user1.Id}\n" +
+                $"and this is product1 guid: {product1.Id}");
 
-            Repository<User> product = new Repository<User>();
+            Console.WriteLine($"This is user2 guid: {user2.Id}\n" +
+                $"and user2 name: {user2.Username}");
+
+            Console.WriteLine($"This is product1 price: {product1.Price}");
 
         }
     }

@@ -6,6 +6,6 @@ namespace Jalasoft.GoldenRecord
 {
     internal interface IEntity
     {
-        int Rank { get; set; }
+        public Guid Id { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace BackendLessonsModern
     {
         Admin admin = new Admin();
 
-        ClientModel client;
+        ProductModel client;
 
         UserModel user;
 

@@ -2,7 +2,7 @@
 
 namespace ClassesAndAccessModifiers
 {
-    public class Book
+    sealed class Book
     {
         public string Title { get; set; }
         private int _Id { get; set; }

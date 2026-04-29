@@ -1,4 +1,7 @@
-﻿namespace BackendLessons
+﻿using Jalasoft.GoldenRecord;
+using System.Collections;
+
+namespace BackendLessons
 {
     internal class Program
     {
@@ -88,6 +91,14 @@
             }
             //1000001.0f
             Console.WriteLine(result);
+            Response<User> userResponse = new Response<User>();
+
+            Response<Product> productResponse = new Response<Product>();
+
+            Response<Page<User>> userPaginatedResponse = new Response<Page<User>>();
+
+            Repository<User> product = new Repository<User>();
+
         }
     }
 }

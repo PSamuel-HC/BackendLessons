@@ -3,4 +3,5 @@
   <Project Path="BackendLessonsModern/BackendLessonsModern.csproj" />
   <Project Path="BankExample/BankExample.csproj" Id="6cd0e29e-4c19-4d2d-8818-c3a0c9610e55" />
   <Project Path="BrokenCode/BrokenCode.csproj" Id="a9546de9-e05a-4445-891d-903da313cba3" />
+  <Project Path="Homework-GenericsAndConstraints/Homework-GenericsAndConstraints.csproj" Id="64cb1ae5-24e9-4f49-9e14-c8971cfd288f" />
 </Solution>

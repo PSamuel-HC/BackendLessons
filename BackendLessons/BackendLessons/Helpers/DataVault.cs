@@ -4,14 +4,34 @@ using System.Text;
 
 namespace Jalasoft.GoldenRecord.Helpers
 {
-    internal class DataVault<T> where T : class, IEntity, new()
+    internal class DataVault<TItem> where TItem : class, IEntity, new()
     {
-        private List<T> itemsList { get; set; } = new List<T>();
+        private List<TItem> ItemsList { get; set; } = new List<TItem>();
 
-        public void AddItem(T item)
+        public void AddItem(TItem item)
         {
             Console.WriteLine($"Adding item with id: {item.Id}");
-            itemsList.Add(item);
+            ItemsList.Add(item);
+        }
+
+        public TItem? GetById(Guid id)
+        {
+            if (ItemsList.Count == 0)
+            {
+                return null;
+            }
+
+            TItem? returnedItem = ItemsList.Find(item => item.Id == id) ?? null;
+
+            return returnedItem;
+
+        }
+
+        public TItem CreateAndAdd()
+        {
+            TItem newElement = new TItem();
+            ItemsList.Add(newElement);
+            return newElement;
         }
     }
 }

@@ -1,5 +1,7 @@
 <Solution>
   <Project Path="BackendLessons/BackendLessons.csproj" />
   <Project Path="BackendLessonsModern/BackendLessonsModern.csproj" />
-  <Project Path="Homework-01/Homework-01.csproj" Id="218e9709-daf5-4b46-b557-2e2cc549537b" />
+  <Project Path="BookClassProgram/BookClassProgram.csproj" Id="95d3db54-2190-48f8-ac75-a8d05606a9c8" />
+  <Project Path="BookLists/BookLists.csproj" Id="4a40b560-7745-4d57-b5c2-0032d3202a67" />
+  <Project Path="BrokenCode/BrokenCode.csproj" Id="a9546de9-e05a-4445-891d-903da313cba3" />
 </Solution>

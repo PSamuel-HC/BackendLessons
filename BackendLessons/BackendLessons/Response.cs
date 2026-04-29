@@ -39,7 +39,23 @@ namespace Jalasoft.GoldenRecord
 
     internal class Product
     {
+        public Guid? Id { get; set; }
 
+        public string? ProductName { get; set; }
+
+        public double Price { get; set; }
+
+        public Product()
+        {
+
+        }
+
+        public Product(Guid guid, string productName, double price)
+        {
+            Id = guid;
+            ProductName = productName;
+            Price = price;
+        }
     }
 
     internal record Simple { }

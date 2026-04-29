@@ -28,6 +28,17 @@ namespace BackendLessons
                 $"user2 name: {user2.Username}\n" +
                 $"getUser name: {getUser?.Username}");
 
+            // Testing DataVault<int>
+
+            // DataVault<int> numbers = new DataVault<int>(); // UNCOMMENT TO SEE ERROR
+            /* The previous line fails because DataVault class was specified to have parameters with 
+             generic T type, but int is a Value Type, so it won't be possible.
+            Even if this constraint is removed, the class also implements the IEntity, that requires
+            the items from the DataVault to have their own id property, and int values don't have
+            this type of properties. Also, AddItem and GetById are implemented with the guarantee
+            that 'item.Id' exists.
+            */
+
         }
     }
 }

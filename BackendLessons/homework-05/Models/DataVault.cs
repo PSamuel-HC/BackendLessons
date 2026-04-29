@@ -24,10 +24,11 @@ namespace homework_05.Models
             _list.Add(element);
         }
 
-        // Get Function TODO: I have a question here about managing of null
-        public T GetById(int id)
+        // Get Function
+        // I added T? for managing NULL posibility
+        public T? GetById(int id)
         {
-            T element = (_list).FirstOrDefault(item => item.Id == id);
+            T? element = _list.FirstOrDefault(item => item.Id == id);
             return element;
         }
 

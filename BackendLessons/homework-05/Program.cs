@@ -25,6 +25,7 @@ namespace homework_05
             User foundUser = userVault.GetById(1);
             Console.WriteLine(foundUser != null ? $"Found: {foundUser.Username}" : "Not found");
 
+
             /*
                 new DataVault<int>()
                 

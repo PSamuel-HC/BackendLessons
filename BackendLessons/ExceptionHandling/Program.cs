@@ -18,6 +18,7 @@ namespace ExceptionHandling
             Executor executor = new Executor(excepctionsDictionary);
 
             executor.Execute(NotFoundTest);
+            Console.WriteLine("");
             executor.Execute(DuplicateTest);
         }
 
@@ -30,7 +31,7 @@ namespace ExceptionHandling
         static void DuplicateTest()
         {
             Console.WriteLine("Testing DuplicateException handling:");
-            throw new DuplicateException("element not found");
+            throw new DuplicateException("Bad request");
         }
     }
 }

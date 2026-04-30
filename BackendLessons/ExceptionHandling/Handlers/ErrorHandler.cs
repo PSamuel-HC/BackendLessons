@@ -13,9 +13,12 @@ namespace ExceptionHandling.Handlers
             Console.WriteLine("Error 404: Element not found");
         }
 
-        public void BadRequest()
+        public void BadRequest(List<string> errorMessages)
         {
-            Console.WriteLine("Error 400: Bad Request");
+            foreach(string msg in errorMessages)
+            {
+                Console.WriteLine(msg);
+            }
         }
     }
 }

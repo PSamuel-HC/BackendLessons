@@ -8,9 +8,12 @@ namespace ExceptionHandling
         static void Main(string[] args)
         {
             NotFoundExceptionHandler notFoundExceptionHandler = new NotFoundExceptionHandler();
-            //NotFoundException notFoundException = new NotFoundException("Element not found");
+            DuplicateExceptionHandler duplicateExceptionHandler = new DuplicateExceptionHandler();
 
-            Dictionary<Type, IErrorHandler> excepctionsDictionary = new() { [typeof(NotFoundException)] = notFoundExceptionHandler };
+            Dictionary<Type, IErrorHandler> excepctionsDictionary = new() {
+                [typeof(NotFoundException)] = notFoundExceptionHandler,
+                [typeof(DuplicateException)] = duplicateExceptionHandler
+            };
 
             Executor executor = new Executor(excepctionsDictionary);
 

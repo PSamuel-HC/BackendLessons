@@ -7,9 +7,10 @@ namespace ExceptionHandling
 {
     internal class Executor
     {
-        public List<IErrorHandler> Handlers { get; set; }
+        // Store the exception handler dictionary for fast lookup
+        public Dictionary<Type, IErrorHandler> Handlers { get; set; }
 
-        public Executor(List<IErrorHandler> handlers)
+        public Executor(Dictionary<Type, IErrorHandler> handlers)
         {
             Handlers = handlers;
         }
@@ -22,15 +23,13 @@ namespace ExceptionHandling
             }
             catch(Exception ex)
             {
+                // Create a context for the caught exception
                 ErrorHandlerContext context = new ErrorHandlerContext(ex);
 
-                foreach (IErrorHandler handler in Handlers) 
+                // Find the handler for this exact exception type
+                if (Handlers.TryGetValue(ex.GetType(), out IErrorHandler handler))
                 {
                     handler.Handle(context);
-
-                    //cuando paramos?
-                    if (context.Handled) break;
-
                 }
             }
         }

@@ -18,11 +18,19 @@ namespace ExceptionHandling
             Executor executor = new Executor(excepctionsDictionary);
 
             executor.Execute(NotFoundTest);
+            executor.Execute(DuplicateTest);
         }
 
         static void NotFoundTest()
         {
+            Console.WriteLine("Testing NotFoundException handling:");
             throw new NotFoundException("element not found");
+        }
+
+        static void DuplicateTest()
+        {
+            Console.WriteLine("Testing DuplicateException handling:");
+            throw new DuplicateException("element not found");
         }
     }
 }

@@ -11,8 +11,6 @@ namespace ExceptionHandling.Handlers
         {
             if (context.CustomException is DuplicateException)
             {
-                /// logic to handle
-
                 BadRequest();
 
                 context.Handled = true;

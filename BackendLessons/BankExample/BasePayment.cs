@@ -4,6 +4,8 @@
     {
         public string TransactionId { get; private set; }
 
+        public abstract int ErrorCode { get; } 
+
         protected BasePayment()
         {
             TransactionId = Guid.NewGuid().ToString();

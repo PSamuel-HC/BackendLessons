@@ -6,4 +6,5 @@
   <Project Path="BookLists/BookLists.csproj" Id="4a40b560-7745-4d57-b5c2-0032d3202a67" />
   <Project Path="BrokenCode/BrokenCode.csproj" Id="a9546de9-e05a-4445-891d-903da313cba3" />
   <Project Path="homework-05/homework-05.csproj" Id="85eee766-e9cf-4d42-aac3-ec653d467afa" />
+  <Project Path="ExceptionHandling/ExceptionHandling.csproj" Id="1c9b7b54-410c-4acc-bef2-9c1216ced9d0" />
 </Solution>

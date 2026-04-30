@@ -1,4 +1,5 @@
-﻿using ExceptionHandling.Handlers;
+﻿using ExceptionHandling.Exceptions;
+using ExceptionHandling.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,9 +8,9 @@ namespace ExceptionHandling
 {
     internal class Executor
     {
-        public List<IErrorHandler> Handlers { get; set; }
+        public Dictionary<short, IErrorHandler> Handlers { get; set; } //I'm using the "error code" as the key
 
-        public Executor(List<IErrorHandler> handlers)
+        public Executor(Dictionary<short, IErrorHandler> handlers)
         {
             Handlers = handlers;
         }
@@ -22,16 +23,15 @@ namespace ExceptionHandling
             }
             catch(Exception ex)
             {
-                ErrorHandlerContext context = new ErrorHandlerContext(ex);
-
-                foreach (IErrorHandler handler in Handlers) 
+                if(ex is BankPlatformException bankEx) //It is being validated that the exception is a child class of Bankplatformexc.
                 {
-                    handler.Handle(context);
-
-                    //cuando paramos?
-                    if (context.Handled) break;
-
+                    if (Handlers.ContainsKey(bankEx.ErrorCode))
+                    {
+                        ErrorHandlerContext context = new ErrorHandlerContext(ex, bankEx.Messages); //Here, the exception errors are being passed to the context.
+                        Handlers[bankEx.ErrorCode].Handle(context);
+                    }
                 }
+               
             }
         }
     }

@@ -13,9 +13,10 @@ namespace ExceptionHandling.Handlers
             Console.WriteLine("Element not found");
         }
 
-        public void BadRequest()
+        public void BadRequest(List<string> errorMessages)
         {
-            Console.WriteLine("Bad Request");
+            errorMessages.ForEach(x => Console.WriteLine("Error: " + x + "\n"));
         }
+        //I am printing all the errors received.
     }
 }

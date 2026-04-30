@@ -1,4 +1,6 @@
-﻿using ExceptionHandling.Handlers;
+﻿using ExceptionHandling.Exceptions;
+using ExceptionHandling.Handlers;
+using Homework_ExceptionHandling.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,31 +9,39 @@ namespace ExceptionHandling
 {
     internal class Executor
     {
-        public List<IErrorHandler> Handlers { get; set; }
 
-        public Executor(List<IErrorHandler> handlers)
+        // Create a dictionary that maps error codes to Handlers
+        public Dictionary<BankErrorCode, IErrorHandler> Handlers { set; get; }
+
+        public Executor(Dictionary<BankErrorCode, IErrorHandler> handlers)
         {
             Handlers = handlers;
         }
-        
+
         public void Execute(Action action)
         {
             try
             {
                 action.Invoke();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ErrorHandlerContext context = new ErrorHandlerContext(ex);
 
-                foreach (IErrorHandler handler in Handlers) 
+                // Check if the error is a BankPlatformException and creates a new casted var bankExc 
+                // (This is done in order to use bankExc.ErrorCode)
+                // If Exception is not a BankPlatformException or Error code is not mapped to an error handler:
+                // print error and tell that we wer not able to solve it 
+                if (ex is BankPlatformException bankExc && Handlers.ContainsKey(bankExc.ErrorCode))
                 {
-                    handler.Handle(context);
-
-                    //cuando paramos?
-                    if (context.Handled) break;
-
+                    Handlers[bankExc.ErrorCode].Handle(context);
                 }
+                else
+                {
+                    Console.WriteLine("Executor: Unable to handle unknown exception");
+                    Console.WriteLine($"Executor: {ex.ToString()}");
+                }
+
             }
         }
     }

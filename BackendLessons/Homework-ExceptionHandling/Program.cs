@@ -1,5 +1,6 @@
 ﻿using ExceptionHandling.Exceptions;
 using ExceptionHandling.Handlers;
+using Homework_ExceptionHandling.Enums;
 
 namespace ExceptionHandling
 {
@@ -9,14 +10,22 @@ namespace ExceptionHandling
         {
             NotFoundExceptionHandler notFoundExceptionHandler = new NotFoundExceptionHandler();
 
-            Executor executor = new Executor(new List<IErrorHandler>() { notFoundExceptionHandler });
+            Executor executor = new Executor(new Dictionary<BankErrorCode, IErrorHandler>() {
+                {BankErrorCode.NotFound, notFoundExceptionHandler }
+            });
 
             executor.Execute(NotFoundTest);
+            //executor.Execute(UnknownExceptionTest);
         }
 
         static void NotFoundTest()
         {
             throw new NotFoundException("element not found");
+        }
+
+        static void UnknownExceptionTest()
+        {
+            throw new DivideByZeroException();
         }
     }
 }

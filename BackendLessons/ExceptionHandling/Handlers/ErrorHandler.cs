@@ -12,6 +12,11 @@ namespace ExceptionHandling.Handlers
         {
             Console.WriteLine("Element not found");
         }
+        // Step 2: I added Duplicate ad
+        public void Duplicated()
+        {
+            Console.WriteLine("Element is duplicated");
+        }
 
         public void BadRequest()
         {

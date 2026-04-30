@@ -6,17 +6,14 @@ using System.Text;
 namespace ExceptionHandling.Handlers
 {
     internal class NotFoundExceptionHandler : ErrorHandler
+{
+    public override void Handle(ErrorHandlerContext context)
     {
-        public override void Handle(ErrorHandlerContext context)
+        if (context.CustomException is NotFoundException)
         {
-            if (context.CustomException is NotFoundException)
-            {
-                /// logic to handle
-
-                NotFound();
-
-                context.Handled = true;
-            }
+            NotFound();
+            context.Handled = true;
         }
     }
+}
 }

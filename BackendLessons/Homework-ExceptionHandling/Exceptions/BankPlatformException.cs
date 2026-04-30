@@ -1,6 +1,6 @@
 ﻿using Homework_ExceptionHandling.Enums;
 
-namespace ExceptionHandling.Exceptions
+namespace Homework_ExceptionHandling.Exceptions
 {
     internal abstract class BankPlatformException : Exception
     {

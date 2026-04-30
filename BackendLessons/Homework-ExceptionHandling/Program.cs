@@ -1,26 +1,34 @@
-﻿using ExceptionHandling.Exceptions;
-using ExceptionHandling.Handlers;
-using Homework_ExceptionHandling.Enums;
+﻿using Homework_ExceptionHandling.Enums;
+using Homework_ExceptionHandling.Exceptions;
+using Homework_ExceptionHandling.Handlers;
 
-namespace ExceptionHandling
+namespace Homework_ExceptionHandling
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             NotFoundExceptionHandler notFoundExceptionHandler = new NotFoundExceptionHandler();
+            DuplicateExceptionHandler duplicateExceptionHandler = new DuplicateExceptionHandler();
 
             Executor executor = new Executor(new Dictionary<BankErrorCode, IErrorHandler>() {
-                {BankErrorCode.NotFound, notFoundExceptionHandler }
+                {BankErrorCode.NotFound, notFoundExceptionHandler },
+                {BankErrorCode.Duplicate, duplicateExceptionHandler }
             });
 
             executor.Execute(NotFoundTest);
-            //executor.Execute(UnknownExceptionTest);
+            executor.Execute(DuplicateTest);
+            executor.Execute(UnknownExceptionTest);
         }
 
         static void NotFoundTest()
         {
             throw new NotFoundException("element not found");
+        }
+
+        static void DuplicateTest()
+        {
+            throw new DuplicateException("element not found");
         }
 
         static void UnknownExceptionTest()

@@ -5,16 +5,13 @@ using System.Text;
 
 namespace Homework_ExceptionHandling.Handlers
 {
-    internal class NotFoundExceptionHandler : ErrorHandler
+    internal class DuplicateExceptionHandler : ErrorHandler
     {
         public override void Handle(ErrorHandlerContext context)
         {
-            if (context.CustomException is NotFoundException)
+            if (context.CustomException is DuplicateException)
             {
-                /// logic to handle
-
-                NotFound();
-
+                BadRequest();
                 context.Handled = true;
             }
         }

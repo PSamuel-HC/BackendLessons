@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExceptionHandling.Exceptions
+namespace Homework_ExceptionHandling.Exceptions
 {
     internal class NotFoundException : BankPlatformException
     {

@@ -1,11 +1,11 @@
-﻿using ExceptionHandling.Exceptions;
-using ExceptionHandling.Handlers;
-using Homework_ExceptionHandling.Enums;
+﻿using Homework_ExceptionHandling.Enums;
+using Homework_ExceptionHandling.Exceptions;
+using Homework_ExceptionHandling.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExceptionHandling
+namespace Homework_ExceptionHandling
 {
     internal class Executor
     {

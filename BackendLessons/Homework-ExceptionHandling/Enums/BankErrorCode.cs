@@ -8,7 +8,8 @@ namespace Homework_ExceptionHandling.Enums
     internal enum BankErrorCode : ushort
     {
         Unknown = 0,
-        NotFound = 404,
         BadRequest = 400,
+        NotFound = 404,
+        Duplicate = 409,
     }
 }

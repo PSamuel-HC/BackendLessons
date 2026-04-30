@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExceptionHandling.Handlers
+namespace Homework_ExceptionHandling.Handlers
 {
     internal class ErrorHandlerContext
     {

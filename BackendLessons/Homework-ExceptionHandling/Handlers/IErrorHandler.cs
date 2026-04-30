@@ -1,4 +1,4 @@
-﻿namespace ExceptionHandling.Handlers
+﻿namespace Homework_ExceptionHandling.Handlers
 {
     internal interface IErrorHandler
     {

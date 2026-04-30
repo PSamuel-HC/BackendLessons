@@ -1,4 +1,5 @@
-﻿using ExceptionHandling.Exceptions;
+﻿using ExceptionHandling.Constants;
+using ExceptionHandling.Exceptions;
 using ExceptionHandling.Handlers;
 
 namespace ExceptionHandling
@@ -7,16 +8,19 @@ namespace ExceptionHandling
     {
         static void Main(string[] args)
         {
-            NotFoundExceptionHandler notFoundExceptionHandler = new NotFoundExceptionHandler();
+            var handlers = new Dictionary<int, IErrorHandler>
+            {
+                { ErrorCodes.NotFound, new NotFoundExceptionHandler() },
+                { ErrorCodes.Duplicate, new DuplicateExceptionHandler() }
+            };
 
-            Executor executor = new Executor(new List<IErrorHandler>() { notFoundExceptionHandler });
+            var executor = new Executor(handlers);
 
-            executor.Execute(NotFoundTest);
-        }
+            Console.WriteLine("not found test");
+            executor.Execute(() => throw new NotFoundException("User not found"));
 
-        static void NotFoundTest()
-        {
-            throw new NotFoundException("element not found");
+            Console.WriteLine("Duplicate test");
+            executor.Execute(() => throw new DuplicateException("User already exists"));
         }
     }
 }

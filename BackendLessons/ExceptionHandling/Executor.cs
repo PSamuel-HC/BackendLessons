@@ -1,4 +1,5 @@
-﻿using ExceptionHandling.Handlers;
+﻿using ExceptionHandling.Exceptions;
+using ExceptionHandling.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,9 +8,9 @@ namespace ExceptionHandling
 {
     internal class Executor
     {
-        public List<IErrorHandler> Handlers { get; set; }
+        public Dictionary<int, IErrorHandler> Handlers { get; set; } 
 
-        public Executor(List<IErrorHandler> handlers)
+        public Executor(Dictionary<int, IErrorHandler> handlers)
         {
             Handlers = handlers;
         }
@@ -24,12 +25,14 @@ namespace ExceptionHandling
             {
                 ErrorHandlerContext context = new ErrorHandlerContext(ex);
 
-                foreach (IErrorHandler handler in Handlers) 
+                if (ex is BankPlatformException bankExc && Handlers.ContainsKey(bankExc.ErrorCode))
                 {
-                    handler.Handle(context);
-
-                    //cuando paramos?
-                    if (context.Handled) break;
+                    Handlers[bankExc.ErrorCode].Handle(context);
+                }
+                else
+                {
+                    Console.WriteLine("Executor: Unable to handle unknown exception");
+                    Console.WriteLine($"Executor: {ex}");
 
                 }
             }

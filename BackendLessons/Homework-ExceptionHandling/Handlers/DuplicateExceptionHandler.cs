@@ -11,7 +11,8 @@ namespace Homework_ExceptionHandling.Handlers
         {
             if (context.CustomException is DuplicateException)
             {
-                BadRequest();
+                context.ErrorMessages.Add(context.CustomException.Message);
+                BadRequest(context.ErrorMessages);
                 context.Handled = true;
             }
         }

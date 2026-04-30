@@ -13,9 +13,14 @@ namespace Homework_ExceptionHandling.Handlers
             Console.WriteLine("Element not found");
         }
 
-        public void BadRequest()
+        public void BadRequest(List<string> errorMessages)
         {
             Console.WriteLine("Bad Request");
+            Console.WriteLine("Bad Request Errors:");
+            for (int i = 0; i < errorMessages.Count; ++i)
+            {
+                Console.WriteLine($"{i}: {errorMessages[i]}");
+            }
         }
     }
 }

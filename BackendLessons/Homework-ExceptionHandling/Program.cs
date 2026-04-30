@@ -17,23 +17,25 @@ namespace Homework_ExceptionHandling
             });
 
             executor.Execute(NotFoundTest);
+            Console.WriteLine("--------------------------------------------");
             executor.Execute(DuplicateTest);
+            Console.WriteLine("--------------------------------------------");
             executor.Execute(UnknownExceptionTest);
         }
 
         static void NotFoundTest()
         {
-            throw new NotFoundException("element not found");
+            throw new NotFoundException("Element not found");
         }
 
         static void DuplicateTest()
         {
-            throw new DuplicateException("element not found");
+            throw new DuplicateException("Element already exist");
         }
 
         static void UnknownExceptionTest()
         {
-            throw new DivideByZeroException();
+            throw new DivideByZeroException("Div by 0");
         }
     }
 }

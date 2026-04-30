@@ -10,6 +10,8 @@ namespace Homework_ExceptionHandling.Handlers
 
         public bool Handled { get; set; }
 
+        public List<string> ErrorMessages { get; set; } = new List<string>();
+
         public ErrorHandlerContext(Exception exception)
         {
             CustomException = exception;

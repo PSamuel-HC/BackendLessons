@@ -10,9 +10,12 @@ namespace ExceptionHandling.Handlers
 
         public bool Handled { get; set; }
 
+        public List<string> ErrorMessages { get; set; } = [];
+
         public ErrorHandlerContext(Exception exception)
         {
             CustomException = exception;
+            ErrorMessages.Add(exception.Message);
         }
     }
 }

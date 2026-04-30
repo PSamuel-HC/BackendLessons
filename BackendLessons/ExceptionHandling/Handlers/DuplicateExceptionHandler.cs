@@ -11,7 +11,12 @@ namespace ExceptionHandling.Handlers
         {
             if (context.CustomException is DuplicateException)
             {
-                BadRequest(new List<string> () { "Error 400: Bad Request", "Duplicate entries" });
+                DuplicateException exception = (DuplicateException)context.CustomException;
+                int errorCode = exception.ErrorCode;
+                BadRequest(new List<string> () { $"Error {errorCode}: Bad Request",
+                    "Duplicate entries",
+                    context.CustomException.Message
+                });
 
                 context.Handled = true;
             }

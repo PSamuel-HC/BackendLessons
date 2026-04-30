@@ -10,10 +10,10 @@ namespace ExceptionHandling
             NotFoundExceptionHandler notFoundExceptionHandler = new NotFoundExceptionHandler();
             DuplicateExceptionHandler duplicateExceptionHandler = new DuplicateExceptionHandler();
 
-            Dictionary<Type, IErrorHandler> excepctionsDictionary = new()
+            Dictionary<int, IErrorHandler> excepctionsDictionary = new()
             {
-                [typeof(NotFoundException)] = notFoundExceptionHandler,
-                [typeof(DuplicateException)] = duplicateExceptionHandler
+                [ErrorCodes.NotFound] = notFoundExceptionHandler,
+                [ErrorCodes.Duplicate] = duplicateExceptionHandler
             };
 
             Executor executor = new Executor(excepctionsDictionary);
@@ -24,11 +24,11 @@ namespace ExceptionHandling
 
         static void NotFoundTest()
         {
-            throw new NotFoundException("element not found");
+            throw new NotFoundException("Element not found");
         }
         static void DuplicateTest()
         {
-            throw new DuplicateException("duplicate element");
+            throw new DuplicateException("Duplicate element");
         }
     }
 }

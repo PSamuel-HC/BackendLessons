@@ -13,7 +13,7 @@ namespace ExceptionHandling.Handlers
             {
                 /// logic to handle
 
-                BadRequest();
+                BadRequest(context.ErrorMessages);
 
                 context.Handled = true;
             }

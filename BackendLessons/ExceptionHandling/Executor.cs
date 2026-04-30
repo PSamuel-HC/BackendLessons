@@ -1,4 +1,5 @@
-﻿using ExceptionHandling.Handlers;
+﻿using ExceptionHandling.Exceptions;
+using ExceptionHandling.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,9 +8,9 @@ namespace ExceptionHandling
 {
     internal class Executor
     {
-        public Dictionary<Type, IErrorHandler> Handlers { get; set; }
+        public Dictionary<int, IErrorHandler> Handlers { get; set; }
 
-        public Executor(Dictionary<Type, IErrorHandler> handlers)
+        public Executor(Dictionary<int, IErrorHandler> handlers)
         {
             Handlers = handlers;
         }
@@ -22,11 +23,13 @@ namespace ExceptionHandling
             }
             catch(Exception ex)
             {
-                ErrorHandlerContext context = new ErrorHandlerContext(ex);
+                if (ex is BankPlatformException BankPlatformException)
+                {
+                    ErrorHandlerContext context = new ErrorHandlerContext(ex);
+                    IErrorHandler handler = Handlers[BankPlatformException.ErrorCode];
 
-                IErrorHandler handler = Handlers[context.CustomException.GetType()];
-
-                handler.Handle(context);
+                    handler.Handle(context);
+                }
             }
         }
     }

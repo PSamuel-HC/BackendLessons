@@ -4,4 +4,5 @@
   <Project Path="BankExample/BankExample.csproj" Id="6cd0e29e-4c19-4d2d-8818-c3a0c9610e55" />
   <Project Path="BrokenCode/BrokenCode.csproj" Id="a9546de9-e05a-4445-891d-903da313cba3" />
   <Project Path="ExceptionHandling/ExceptionHandling.csproj" Id="1c9b7b54-410c-4acc-bef2-9c1216ced9d0" />
+  <Project Path="Homework-ExceptionHandling/Homework-ExceptionHandling.csproj" Id="50f7a238-f8f2-4611-967c-73b57ad92fa0" />
 </Solution>

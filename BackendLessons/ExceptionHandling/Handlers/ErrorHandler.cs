@@ -10,12 +10,12 @@ namespace ExceptionHandling.Handlers
 
         public void NotFound()
         {
-            Console.WriteLine("Element not found");
+            Console.WriteLine("Error 404: Element not found");
         }
 
         public void BadRequest()
         {
-            Console.WriteLine("Bad Request");
+            Console.WriteLine("Error 400: Bad Request");
         }
     }
 }

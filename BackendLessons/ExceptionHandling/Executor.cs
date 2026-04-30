@@ -7,9 +7,10 @@ namespace ExceptionHandling
 {
     internal class Executor
     {
-        public List<IErrorHandler> Handlers { get; set; }
+        // Changing list for dictionary
+        public Dictionary<Type, IErrorHandler> Handlers { get; set; }
 
-        public Executor(List<IErrorHandler> handlers)
+        public Executor(Dictionary<Type, IErrorHandler> handlers)
         {
             Handlers = handlers;
         }
@@ -24,14 +25,12 @@ namespace ExceptionHandling
             {
                 ErrorHandlerContext context = new ErrorHandlerContext(ex);
 
-                foreach (IErrorHandler handler in Handlers) 
-                {
-                    handler.Handle(context);
+                // Accesing directly the handler
+                IErrorHandler handler = Handlers[context.CustomException.GetType()];
 
-                    //cuando paramos?
-                    if (context.Handled) break;
+                // Executing Handle method of the needed handler
+                handler.Handle(context);
 
-                }
             }
         }
     }

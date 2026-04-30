@@ -6,7 +6,7 @@ namespace ExceptionHandling.Exceptions
 {
     internal class NotFoundException : BankPlatformException
     {
-        public override int ErrorCode => 20;
+        public override int ErrorCode => 404;
 
 
         public NotFoundException(string message) : base(message)

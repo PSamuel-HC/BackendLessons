@@ -1,19 +1,18 @@
 ﻿using ExceptionHandling.Handlers;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ExceptionHandling
 {
     internal class Executor
     {
-        public List<IErrorHandler> Handlers { get; set; }
+        public Dictionary<Type, IErrorHandler> Handlers { get; set; }
 
-        public Executor(List<IErrorHandler> handlers)
+        public Executor(Dictionary<Type, IErrorHandler> handlers)
         {
             Handlers = handlers;
         }
-        
+
         public void Execute(Action action)
         {
             try
@@ -22,15 +21,9 @@ namespace ExceptionHandling
             }
             catch(Exception ex)
             {
-                ErrorHandlerContext context = new ErrorHandlerContext(ex);
-
-                foreach (IErrorHandler handler in Handlers) 
+                if (Handlers.TryGetValue(ex.GetType(), out IErrorHandler? handler))
                 {
-                    handler.Handle(context);
-
-                    //cuando paramos?
-                    if (context.Handled) break;
-
+                    handler.Handle(new ErrorHandlerContext(ex));
                 }
             }
         }

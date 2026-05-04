@@ -7,16 +7,28 @@ namespace ExceptionHandling
     {
         static void Main(string[] args)
         {
-            NotFoundExceptionHandler notFoundExceptionHandler = new NotFoundExceptionHandler();
-
-            Executor executor = new Executor(new List<IErrorHandler>() { notFoundExceptionHandler });
+            Executor executor = new Executor(new Dictionary<Type, IErrorHandler>()
+            {
+                { typeof(NotFoundException), new NotFoundExceptionHandler() },
+                { typeof(DuplicateException), new DuplicateExceptionHandler() }
+            });
 
             executor.Execute(NotFoundTest);
+            executor.Execute(DuplicateTest);
         }
 
         static void NotFoundTest()
         {
             throw new NotFoundException("element not found");
+        }
+
+        static void DuplicateTest()
+        {
+            throw new DuplicateException("duplicate entry detected", new List<string>
+            {
+                "Email already exists",
+                "Username already taken"
+            });
         }
     }
 }

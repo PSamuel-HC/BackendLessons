@@ -1,10 +1,10 @@
 ﻿using Jalasoft.GoldenRecord;
-using System.Collections;
 
 namespace BackendLessons
 {
     internal class Program
     {
+        ///#error version
         static void Main(string[] args)
         {
             Response<User> userResponse = new Response<User>();

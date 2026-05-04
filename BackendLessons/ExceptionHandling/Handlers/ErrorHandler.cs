@@ -6,6 +6,8 @@ namespace ExceptionHandling.Handlers
 {
     internal abstract class ErrorHandler : IErrorHandler
     {
+        //#error version
+
         public abstract void Handle(ErrorHandlerContext context);
 
         public void NotFound()

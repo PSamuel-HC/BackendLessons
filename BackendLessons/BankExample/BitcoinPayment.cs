@@ -2,6 +2,8 @@
 {
     internal class BitcoinPayment : BasePayment
     {
+        public override int ErrorCode => 85;
+
         public override bool ValidateCredentials()
         {
             Console.WriteLine("Verifying Wallet Address on Blockchain...");

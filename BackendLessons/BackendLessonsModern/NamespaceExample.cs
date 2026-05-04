@@ -1,5 +1,4 @@
 ﻿using BackendLessons;
-using BackendLessons.Models;
 using Jalasoft.GoldenRecord.Models;
 
 namespace BackendLessonsModern

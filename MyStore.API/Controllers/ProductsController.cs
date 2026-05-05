@@ -21,17 +21,26 @@ namespace MyStore.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetProducts()
         {
-            var products = await _context.Products.ToListAsync();
 
-            // MAPPING: Entity -> DTO
-            var dtos = products.Select(p => new ProductReadDto
+            try
             {
-                Id = p.Id,
-                Name = p.Name,
-                Price = p.Price
-            });
+                var products = await _context.Products.ToListAsync();
 
-            return Ok(dtos);
+                // MAPPING: Entity -> DTO
+                var dtos = products.Select(p => new ProductReadDto
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price
+                });
+
+                return Ok(dtos);
+
+            }
+            catch (Exception ex)
+            {
+                return NoContent();
+            }
         }
 
         // POST: api/products

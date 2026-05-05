@@ -8,5 +8,7 @@ namespace MyStore.Infrastructure
         public MyStoreDbContext(DbContextOptions<MyStoreDbContext> options) : base(options) { }
 
         public DbSet<Product> Products { get; set; } // This creates the "Products" table
+
+        public DbSet<Customer> Customers { get; set; }
     }
 }

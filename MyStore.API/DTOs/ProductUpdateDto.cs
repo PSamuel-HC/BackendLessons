@@ -1,6 +1,6 @@
-﻿namespace MyStore.API.DTOs
+namespace MyStore.API.DTOs
 {
-    public class ProductCreateDto
+    public class ProductUpdateDto
     {
         // The User shouldn't send an ID; the DB generates it.
         public string Name { get; set; }

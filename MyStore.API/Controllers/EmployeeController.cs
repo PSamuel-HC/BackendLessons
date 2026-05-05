@@ -17,48 +17,70 @@ namespace MyStore.API.Controllers
             _context = context;
         }
 
-        // GET: api/products
+        // GET: api/employees
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<EmployeeReadDto>>> GetEmployees()
         {
-            var products = await _context.Products.ToListAsync();
+            var employees = await _context.Employees.ToListAsync();
 
             // MAPPING: Entity -> DTO
-            var dtos = products.Select(p => new ProductReadDto
+            var dtos = employees.Select(p => new EmployeeReadDto
             {
                 Id = p.Id,
-                Name = p.Name,
-                Price = p.Price
+                FullName = p.FirstName + " " + p.LastName,
+                Role = p.Role,
+                HireDate = p.HireDate
             });
 
             return Ok(dtos);
         }
 
-        // POST: api/products
+
+        // POST: api/employees
         [HttpPost]
-        public async Task<ActionResult<ProductReadDto>> CreateProduct(ProductCreateDto dto)
+        public async Task<ActionResult<EmployeeReadDto>> CreateEmployee(EmployeeCreateDto dto)
         {
             // 1. MAPPING: DTO -> Entity
-            var product = new Product
+            var employee = new Employee
             {
-                Name = dto.Name,
-                Description = dto.Description,
-                Price = dto.Price
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Role = dto.Role,
+                HourlyRate = dto.HourlyRate,
+                HireDate = dto.HireDate
             };
 
             // 2. Persist to Database
-            _context.Products.Add(product);
+            _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
 
             // 3. Convert back to ReadDto to show the user the result (with the new ID)
-            var resultDto = new ProductReadDto
+            var resultDto = new EmployeeReadDto
             {
-                Id = product.Id,
-                Name = product.Name,
-                Price = product.Price
+                Id = employee.Id,
+                FullName = employee.FirstName + " " + employee.LastName,
+                Role = employee.Role,
+                HireDate = employee.HireDate
             };
 
-            return CreatedAtAction(nameof(GetProducts), new { id = resultDto.Id }, resultDto);
+            return CreatedAtAction(nameof(GetEmployees), new { id = resultDto.Id }, resultDto);
         }
+
+        // DELETE: api/employees/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            _context.Employees.Remove(employee);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }

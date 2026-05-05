@@ -8,11 +8,11 @@ namespace MyStore.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CustomerController : ControllerBase
+    public class CustomersController : ControllerBase
     {
         private readonly MyStoreDbContext _context;
 
-        public CustomerController(MyStoreDbContext context)
+        public CustomersController(MyStoreDbContext context)
         {
             _context = context;
         }

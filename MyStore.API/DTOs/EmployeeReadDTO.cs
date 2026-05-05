@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyStore.Domain.Model
 {
-    public class EmployeeReadDTO
+    public class EmployeeReadDto
     {
         public int Id { get; set; }
         public string FullName { get; set; } = string.Empty;

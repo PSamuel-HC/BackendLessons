@@ -35,6 +35,28 @@ namespace MyStore.API.Controllers
             return Ok(dtos);
         }
 
+        // GET: api/employees/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<EmployeeReadDto>>> GetOneEmployee(int id)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            // MAPPING: Entity -> DTO
+            var employeeDto = new EmployeeReadDto
+            {
+                Id = employee.Id,
+                FullName = employee.FirstName + " " + employee.LastName,
+                Role = employee.Role,
+                HireDate = employee.HireDate
+            };
+            return Ok(employeeDto);
+        }
+
 
         // POST: api/employees
         [HttpPost]

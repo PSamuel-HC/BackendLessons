@@ -58,7 +58,7 @@ namespace MyStore.API.Controllers
 
             return Ok(dto);
         }
-        
+
         // POST: api/products
         [HttpPost]
         public async Task<ActionResult<ProductReadDto>> CreateProduct(ProductCreateDto dto)

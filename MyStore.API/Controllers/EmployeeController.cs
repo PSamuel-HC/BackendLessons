@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MyStore.API.DTOs;
 using MyStore.Domain.Model;
 using MyStore.Infrastructure;
+using System.Globalization;
 
 namespace MyStore.API.Controllers
 {
@@ -69,7 +70,7 @@ namespace MyStore.API.Controllers
                 LastName = dto.LastName,
                 Role = dto.Role,
                 HourlyRate = dto.HourlyRate,
-                HireDate = dto.HireDate
+                HireDate = DateTime.ParseExact(dto.HireDate, "dd/MM/yyyy", CultureInfo.InvariantCulture)
             };
 
             // 2. Persist to Database
@@ -103,7 +104,7 @@ namespace MyStore.API.Controllers
             employee.LastName = dto.LastName;
             employee.Role = dto.Role;
             employee.HourlyRate = dto.HourlyRate;
-            employee.HireDate = dto.HireDate;
+            employee.HireDate = DateTime.ParseExact(dto.HireDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             // 3. Persist on DB
             await _context.SaveChangesAsync();

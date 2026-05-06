@@ -10,7 +10,7 @@ namespace MyStore.Domain.Model
         public string LastName { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public decimal HourlyRate { get; set; }
-        public DateTime HireDate { get; set; }
+        public string HireDate { get; set; } = string.Empty;
 
     }
 }

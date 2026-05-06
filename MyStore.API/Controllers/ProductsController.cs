@@ -28,7 +28,7 @@ namespace MyStore.API.Controllers
             {
                 Id = p.Id,
                 Name = p.Name,
-                Price = p.Price
+                Price = p.Price,
             });
 
             return Ok(dtos);
@@ -43,7 +43,7 @@ namespace MyStore.API.Controllers
             {
                 Name = dto.Name,
                 Description = dto.Description,
-                Price = dto.Price
+                Price = dto.Price,
             };
 
             // 2. Persist to Database
@@ -55,10 +55,77 @@ namespace MyStore.API.Controllers
             {
                 Id = product.Id,
                 Name = product.Name,
-                Price = product.Price
+                Price = product.Price,
             };
 
             return CreatedAtAction(nameof(GetProducts), new { id = resultDto.Id }, resultDto);
         }
+
+
+        // GET: api/Products/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductReadDto>> GetProduct(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(new ProductReadDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price
+            });
+        }
+
+        // PUT: api/Products/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutProduct(int id, ProductCreateDto productDto)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.Name = productDto.Name;
+            product.Description = productDto.Description;
+            product.Price = productDto.Price;
+            product.InternalCost = productDto.InternalCost;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return StatusCode(500, "Error");
+            }
+
+            return NoContent();
+        }
+
+
+        // DELETE: api/Products/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }

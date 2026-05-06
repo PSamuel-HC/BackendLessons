@@ -108,16 +108,8 @@ namespace MyStore.API.Controllers
             // 3. Persist on DB
             await _context.SaveChangesAsync();
 
-            // 4. Convert back to ReadDto 
-            var resultDto = new EmployeeReadDto
-            {
-                Id = employee.Id,
-                FullName = employee.FirstName + " " + employee.LastName,
-                Role = employee.Role,
-                HireDate = employee.HireDate
-            };
-
-            return Ok(resultDto);
+            // 4. Returning 204 No Content
+            return NoContent();
         }
 
         // DELETE: api/employees/{id}

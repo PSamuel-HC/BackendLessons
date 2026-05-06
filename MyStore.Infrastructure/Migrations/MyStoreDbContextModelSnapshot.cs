@@ -52,6 +52,7 @@ namespace MyStore.Infrastructure.Migrations
                 b.ToTable("Customers");
             });
 
+            
             modelBuilder.Entity("MyStore.Domain.Model.Employee", b =>
             {
                 b.Property<int>("Id")
@@ -83,6 +84,38 @@ namespace MyStore.Infrastructure.Migrations
                 b.ToTable("Employees");
             });
 
+
+            modelBuilder.Entity("MyStore.Domain.Model.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrderNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShippingAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("MyStore.Domain.Model.Product", b =>
             {
                 b.Property<int>("Id")
@@ -95,12 +128,23 @@ namespace MyStore.Infrastructure.Migrations
                     .IsRequired()
                     .HasColumnType("nvarchar(max)");
 
+                b.Property<string>("Manufacturer")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
                 b.Property<string>("Name")
                     .IsRequired()
                     .HasColumnType("nvarchar(max)");
 
                 b.Property<decimal>("Price")
                     .HasColumnType("decimal(18,2)");
+
+                b.Property<string>("SKU")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<int>("WarrantyMonths")
+                    .HasColumnType("int");
 
                 b.HasKey("Id");
 

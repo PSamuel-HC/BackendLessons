@@ -8,8 +8,8 @@ namespace MyStore.API.DTOs
         public string OrderNumber { get; set; }
         public string CustomerName { get; set; }
         public decimal TotalAmount { get; set; }
-        public OrderStatus Status { get; set; }
+        public string Status { get; set; }
         public string ShippingAddress { get; set; }
-        public DateTime EstimatedDelivery { get; set; } = DateTime.UtcNow.AddDays(7);
+        public string EstimatedDelivery { get; set; } = DateTime.UtcNow.AddDays(7).ToString("yyyy-MM-ddTHH:00:00Z");
     }
 }

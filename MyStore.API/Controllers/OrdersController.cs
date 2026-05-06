@@ -30,7 +30,7 @@ namespace MyStore.API.Controllers
                 OrderNumber = o.OrderNumber,
                 CustomerName = o.CustomerName,
                 TotalAmount = o.TotalAmount,
-                Status = o.Status,
+                Status = o.Status.ToString(),
                 ShippingAddress = o.ShippingAddress
             });
 
@@ -50,7 +50,7 @@ namespace MyStore.API.Controllers
                 OrderNumber = order.OrderNumber,
                 CustomerName = order.CustomerName,
                 TotalAmount = order.TotalAmount,
-                Status = order.Status,
+                Status = order.Status.ToString(),
                 ShippingAddress = order.ShippingAddress
             });
         }
@@ -77,7 +77,7 @@ namespace MyStore.API.Controllers
                 OrderNumber = order.OrderNumber,
                 CustomerName = order.CustomerName,
                 TotalAmount = order.TotalAmount,
-                Status = order.Status,
+                Status = order.Status.ToString(),
                 ShippingAddress = order.ShippingAddress
             };
 

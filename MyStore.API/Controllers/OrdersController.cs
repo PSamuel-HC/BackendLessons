@@ -3,16 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using MyStore.API.DTOs;
 using MyStore.Domain.Model;
 using MyStore.Infrastructure;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MyStore.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class OrderController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         private readonly MyStoreDbContext _context;
-
-        public OrderController(MyStoreDbContext context)
+        
+        public OrdersController(MyStoreDbContext context)
         {
             _context = context;
         }

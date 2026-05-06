@@ -17,50 +17,54 @@ namespace MyStore.API.Controllers
             _context = context;
         }
 
-        // GET: api/products
+        // GET: api/order
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderReadDto>>> GetOrders()
         {
-            var products = await _context.Products.ToListAsync();
-            /*
-                        // MAPPING: Entity -> DTO
-                        var dtos = products.Select(p => new ProductReadDto
-                        {
-                            Id = p.Id,
-                            Name = p.Name,
-                            Price = p.Price
-                        });
+            var orders = await _context.Orders.ToListAsync();
+            
+            var dtos = orders.Select(o => new OrderReadDto
+            {
+                Id = o.Id,
+                OrderNumber = o.OrderNumber,
+                CustomerName = o.CustomerName,
+                TotalAmount = o.TotalAmount,
+                Status = o.Status,
+                ShippingAddress = o.ShippingAddress
+            });
 
-                        return Ok(dtos);*/
-            return Ok();  
+            return Ok(dtos);
+     
         }
 
-        // POST: api/products
+        // POST: api/orders
         [HttpPost]
-        public async Task<ActionResult<ProductReadDto>> CreateProduct(ProductCreateDto dto)
+        public async Task<ActionResult<OrderReadDto>> CreateOrder(OrderCreateDto dto)
         {
-            // 1. MAPPING: DTO -> Entity
-            var product = new Product
+            var order = new Order
             {
-                Name = dto.Name,
-                Description = dto.Description,
-                Price = dto.Price
+               OrderNumber = dto.OrderNumber,
+               CustomerName = dto.CustomerName,
+               TotalAmount = dto.TotalAmount,
+               ShippingAddress = dto.ShippingAddress
             };
 
-            // 2. Persist to Database
-            _context.Products.Add(product);
+            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            // 3. Convert back to ReadDto to show the user the result (with the new ID)
-            var resultDto = new ProductReadDto
+
+            var resultDto = new OrderReadDto
             {
-                Id = product.Id,
-                Name = product.Name,
-                Price = product.Price
+                Id = order.Id,
+                OrderNumber = order.OrderNumber,
+                CustomerName = order.CustomerName,
+                TotalAmount = order.TotalAmount,
+                Status = order.Status,
+                ShippingAddress = order.ShippingAddress
             };
 
-            // return CreatedAtAction(nameof(GetProducts), new { id = resultDto.Id }, resultDto);
-            return Ok();
+            return CreatedAtAction(nameof(GetOrders), new { id = resultDto.Id }, resultDto);
+            
         }
     }
 }

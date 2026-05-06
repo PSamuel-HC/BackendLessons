@@ -88,6 +88,38 @@ namespace MyStore.API.Controllers
             return CreatedAtAction(nameof(GetEmployees), new { id = resultDto.Id }, resultDto);
         }
 
+        // PUT: api/employees/{id}
+        [HttpPut("{id}")]
+        public async Task<ActionResult<EmployeeReadDto>> UpdateEmployee(int id, EmployeeUpdateDto dto)
+        {
+            // 1. Search if employee exists
+            var employee = await _context.Employees.FindAsync(id);
+
+            if (employee == null)
+                return NotFound();
+
+            // 2. Mapping: DTO -> Employee 
+            employee.FirstName = dto.FirstName;
+            employee.LastName = dto.LastName;
+            employee.Role = dto.Role;
+            employee.HourlyRate = dto.HourlyRate;
+            employee.HireDate = dto.HireDate;
+
+            // 3. Persist on DB
+            await _context.SaveChangesAsync();
+
+            // 4. Convert back to ReadDto 
+            var resultDto = new EmployeeReadDto
+            {
+                Id = employee.Id,
+                FullName = employee.FirstName + " " + employee.LastName,
+                Role = employee.Role,
+                HireDate = employee.HireDate
+            };
+
+            return Ok(resultDto);
+        }
+
         // DELETE: api/employees/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)

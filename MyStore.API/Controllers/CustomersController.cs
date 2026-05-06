@@ -69,7 +69,6 @@ namespace MyStore.API.Controllers
             {
                 Email = dto.Email,
                 FullName = dto.FullName,
-                PointsBalance = dto.PointsBalance,
                 IsPremium = dto.IsPremium,
             };
 

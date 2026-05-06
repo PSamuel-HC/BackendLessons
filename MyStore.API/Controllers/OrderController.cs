@@ -37,6 +37,23 @@ namespace MyStore.API.Controllers
      
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<OrderReadDto>> GetById(int id)
+        {
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null) return NotFound();
+
+            return Ok(new OrderReadDto
+            {
+                Id = order.Id,
+                OrderNumber = order.OrderNumber,
+                CustomerName = order.CustomerName,
+                TotalAmount = order.TotalAmount,
+                Status = order.Status,
+                ShippingAddress = order.ShippingAddress
+            });
+        }
+
         // POST: api/orders
         [HttpPost]
         public async Task<ActionResult<OrderReadDto>> CreateOrder(OrderCreateDto dto)

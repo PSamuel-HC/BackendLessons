@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyStore.API.DTOs;
 using MyStore.Domain.Model;
 using MyStore.Infrastructure;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using MyStore.Service.DTOs;
 
 namespace MyStore.API.Controllers
 {

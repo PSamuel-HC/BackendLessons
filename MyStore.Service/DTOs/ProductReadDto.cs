@@ -1,4 +1,4 @@
-﻿namespace MyStore.API.DTOs
+﻿namespace MyStore.Service.DTOs
 {
     public class ProductReadDto
     {
@@ -10,6 +10,5 @@
         public string DisplayName { get; set; } = string.Empty;
 
         public string Description { get; set; } = string.Empty;
-
     }
 }

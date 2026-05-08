@@ -21,27 +21,18 @@ namespace MyStore.API.Controllers
             return Ok(employees);
         }
 
-        //// GET: api/employees/{id}
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<IEnumerable<EmployeeReadDto>>> GetOneEmployee(int id)
-        //{
-        //    var employee = await _context.Employees.FindAsync(id);
+        // GET: api/employees/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<EmployeeReadDto>> GetOneEmployee(int id)
+        {
+            EmployeeReadDto? employee = await employeeService.GetEmployeeByIdAsync(id);
 
-        //    if (employee == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    // MAPPING: Entity -> DTO
-        //    var employeeDto = new EmployeeReadDto
-        //    {
-        //        Id = employee.Id,
-        //        FullName = employee.FirstName + " " + employee.LastName,
-        //        Role = employee.Role,
-        //        HireDate = employee.HireDate
-        //    };
-        //    return Ok(employeeDto);
-        //}
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return Ok(employee);
+        }
 
 
         // POST: api/employees
@@ -49,7 +40,6 @@ namespace MyStore.API.Controllers
         public async Task<ActionResult<EmployeeReadDto>> CreateEmployee(EmployeeCreateDto dto)
         {
             EmployeeReadDto employee = await employeeService.CreateEmployeeAsync(dto);
-
             return CreatedAtAction(nameof(GetEmployees), new { id = employee.Id }, employee);
         }
 
@@ -77,21 +67,18 @@ namespace MyStore.API.Controllers
         //    return NoContent();
         //}
 
-        //// DELETE: api/employees/{id}
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteEmployee(int id)
-        //{
-        //    var employee = await _context.Employees.FindAsync(id);
-        //    if (employee == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // DELETE: api/employees/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            Boolean employeeDeleted = await employeeService.DeleteEmployeeAsync(id);
+            if (!employeeDeleted)
+            {
+                return NotFound();
+            }
 
-        //    _context.Employees.Remove(employee);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
 
     }
 }

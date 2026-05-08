@@ -7,10 +7,10 @@ namespace MyStore.Domain.Interfaces
 {
     public interface IEmployeeRepository
     {
-        Task<Employee?> GetByIdAsync(int id);
+        Task<Employee?> GetEmployeeByIdAsync(int id);
         Task<IEnumerable<Employee>> GetEmployeesAsync();
         Task<Employee> AddEmployeeAsync(Employee employee);
         Task UpdateEmployeeAsync(Employee employee);
-        Task DeleteEmployeeAsync(Employee employee);
+        Task<Boolean> DeleteEmployeeAsync(int id);
     }
 }

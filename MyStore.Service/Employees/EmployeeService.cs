@@ -14,15 +14,21 @@ namespace MyStore.Service.Employees
             return mapper.Map<IEnumerable<EmployeeReadDto>>(employees);
         }
 
-        public Task<EmployeeReadDto> GetEmployeeAsync()
+        public async Task<EmployeeReadDto?> GetEmployeeByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            Employee? employee = await repository.GetEmployeeByIdAsync(id);
+            return mapper.Map<EmployeeReadDto>(employee);
         }
         public async Task<EmployeeReadDto> CreateEmployeeAsync(EmployeeCreateDto employeeCreateDto)
         {
             Employee employee = mapper.Map<Employee>(employeeCreateDto);
             Employee newEmployee = await repository.AddEmployeeAsync(employee);
             return mapper.Map<EmployeeReadDto>(newEmployee);
+        }
+
+        public async Task<Boolean> DeleteEmployeeAsync(int id)
+        {
+            return await repository.DeleteEmployeeAsync(id);
         }
     }
 }

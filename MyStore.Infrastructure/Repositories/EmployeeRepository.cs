@@ -11,7 +11,7 @@ namespace MyStore.Infrastructure.Repositories
     {
         public async Task<IEnumerable<Employee>> GetEmployeesAsync() => await context.Employees.ToListAsync();
 
-        public async Task<Employee?> GetByIdAsync(int id) => await context.Employees.FindAsync(id);
+        public async Task<Employee?> GetEmployeeByIdAsync(int id) => await context.Employees.FindAsync(id);
 
         public async Task<Employee> AddEmployeeAsync(Employee employee)
         {
@@ -26,10 +26,13 @@ namespace MyStore.Infrastructure.Repositories
             return Task.CompletedTask;
         }
 
-        public Task DeleteEmployeeAsync(Employee employee)
+        public async Task<Boolean> DeleteEmployeeAsync(int id)
         {
+            Employee? employee = await context.Employees.FindAsync(id);
+            if (employee == null) return false;
             context.Employees.Remove(employee);
-            return Task.CompletedTask;
+            await context.SaveChangesAsync();
+            return true;
         }
     }
 }

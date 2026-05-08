@@ -15,8 +15,4 @@
     <ProjectReference Include="..\MyStore.Infrastructure\MyStore.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mapper\" />
-  </ItemGroup>
-
 </Project>

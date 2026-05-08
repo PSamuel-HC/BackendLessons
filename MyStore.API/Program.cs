@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using MyStore.Domain.Interfaces;
 using MyStore.Infrastructure;
+using MyStore.Infrastructure.Repositories;
+using MyStore.Service.Mapper;
+using MyStore.Service.Customers;
+using System.Text.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,10 +14,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 
 
-builder.Services.AddControllers();
-
 builder.Services.AddDbContext<MyStoreDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options => {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
+builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
+
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 var app = builder.Build();
 

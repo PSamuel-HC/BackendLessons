@@ -14,8 +14,8 @@ namespace MyStore.Service.Mapper
                 .ForMember(s => s.Manufacturer, opt => opt.MapFrom(d => d.DisplayName.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)[1]))
                 .ForMember(s => s.Name, opt => opt.MapFrom(d => d.DisplayName.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)[0]));
 
-            CreateMap<Product, ProductCreateDto>();
-
+            CreateMap<Product, ProductCreateDto>().ReverseMap();
+            CreateMap<Product, ProductUpdateDto>().ReverseMap();
 
         }
     }

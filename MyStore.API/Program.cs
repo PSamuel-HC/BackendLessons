@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using MyStore.Domain.Interfaces;
 using MyStore.Infrastructure;
+using MyStore.Infrastructure.Repositories;
+using MyStore.Service.Mapper;
+using MyStore.Service.Products;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +18,10 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<MyStoreDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
+
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

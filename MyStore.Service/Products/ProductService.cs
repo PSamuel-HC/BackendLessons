@@ -43,17 +43,10 @@ namespace MyStore.Service.Products
 
             if (p == null) { }
 
-            p.Name = dto.Name;
-            p.SKU = dto.SKU;
-            p.Price = dto.Price;
-            p.Manufacturer = dto.Manufacturer;
-            p.WarrantyMonths = dto.WarrantyMonths;
-            p.Description = dto.Description;
+            Product product2 = mapper.Map<Product>(dto);
+            product2.Id = id;
 
-            //  Product p2 = mapper.Map<Product>(p,dto);
-            //  p2.Id = id;
-
-            await repository.Update(p);
+            await repository.Update(product2);
         }
     }
 }

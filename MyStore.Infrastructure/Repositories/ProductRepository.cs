@@ -4,7 +4,7 @@ using MyStore.Domain.Model;
 
 namespace MyStore.Infrastructure.Repositories
 {
-    internal class ProductRepository(MyStoreDbContext context) : IProductRepository
+    public class ProductRepository(MyStoreDbContext context) : IProductRepository
     {
         public async Task<Product> Create(Product product)
         {

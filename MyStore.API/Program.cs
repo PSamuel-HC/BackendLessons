@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MyStore.Domain.Interfaces;
 using MyStore.Infrastructure;
 using MyStore.Infrastructure.Repositories;
+using MyStore.Service.Employees;
 using MyStore.Service.Mapper;
 using MyStore.Service.Products;
 using System.Text.Json.Serialization;
@@ -26,6 +27,8 @@ builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 var app = builder.Build();
 

@@ -23,14 +23,19 @@ namespace MyStore.Infrastructure.Repositories
 
         }
 
-        public Task UpdateAsync()
+        public void Update(Customer customer)
         {
-            throw new NotImplementedException();
+            context.Customers.Update(customer);
         }
 
-        public void DeleteAsync()
+        public void Delete(Customer customer)
         {
-            throw new NotImplementedException();
+            context.Customers.Remove(customer);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await context.SaveChangesAsync();
         }
     }
 }

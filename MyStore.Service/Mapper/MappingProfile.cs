@@ -11,6 +11,7 @@ namespace MyStore.Service.Mapper
             CreateMap<Customer, CustomerReadDto>().ReverseMap();
 
             CreateMap<Customer, CustomerCreateDto>().ReverseMap();
+            CreateMap<Customer, CustomerUpdateDto>().ReverseMap();
         }
     }
 }

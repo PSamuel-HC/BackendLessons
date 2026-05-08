@@ -27,5 +27,37 @@ namespace MyStore.Service.Customers
             return mapper.Map<CustomerReadDto>(customer);
         }
 
+         public async Task<bool> UpdateCustomerAsync(int id, CustomerUpdateDto customerUpdateDto)
+        {
+            var customer = await repository.GetOneAsync(id);
+
+            if (customer == null)
+            {
+                return false;
+            }
+
+            mapper.Map(customerUpdateDto, customer);
+
+            repository.Update(customer);
+            await repository.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteCustomerAsync(int id)
+        {
+            var customer = await repository.GetOneAsync(id);
+
+            if (customer == null)
+            {
+                return false;
+            }
+
+            repository.Delete(customer);
+            await repository.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 }

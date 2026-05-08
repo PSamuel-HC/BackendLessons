@@ -45,40 +45,32 @@ namespace MyStore.API.Controllers
             return CreatedAtAction(nameof(GetCustomers), new { id = resultDto.Id }, resultDto);
         }
 
-        //// PUT: api/{id}
-        //[HttpPut("{id}")]
-        //public async Task<ActionResult> UpdateCustomer(int id, CustomerUpdateDto dto) {
+        // PUT: api/customers/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCustomer(int id, CustomerUpdateDto dto)
+        {
+            var updated = await customerService.UpdateCustomerAsync(id, dto);
 
-        //    var customer = await _context.Customers.FindAsync(id);
+            if (!updated)
+            {
+                return NotFound();
+            }
 
-        //    if (customer == null)
-        //    {
-        //        return NotFound();
-        //    }
+            return NoContent();
+        }
 
-        //    customer.Email = dto.Email;
-        //    customer.FullName = dto.FullName;
+        // DELETE: api/customers/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCustomer(int id)
+        {
+            var deleted = await customerService.DeleteCustomerAsync(id);
 
-        //    await _context.SaveChangesAsync();
+            if (!deleted)
+            {
+                return NotFound();
+            }
 
-        //    return NoContent();
-        //}
-
-        //// DELETE: api/customers/{id}
-        //[HttpDelete("{id}")] 
-        //public async Task<ActionResult> DeleteCustomer(int id)
-        //{
-        //    var customer = await _context.Customers.FindAsync(id);
-
-        //    if (customer == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Customers.Remove(customer);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
     }
 }

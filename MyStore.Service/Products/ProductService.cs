@@ -43,10 +43,7 @@ namespace MyStore.Service.Products
 
             if (p == null) return;
 
-            Product product2 = mapper.Map(dto, p);
-            product2.Id = id;
-
-            await repository.Update(product2);
+            await repository.Update(mapper.Map(dto, p));
         }
     }
 }

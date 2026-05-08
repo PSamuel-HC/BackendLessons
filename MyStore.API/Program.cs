@@ -3,6 +3,7 @@ using MyStore.Domain.Interfaces;
 using MyStore.Infrastructure;
 using MyStore.Infrastructure.Repositories;
 using MyStore.Service.Mapper;
+using MyStore.Service.Orders;
 using MyStore.Service.Products;
 using System.Text.Json.Serialization;
 
@@ -26,6 +27,9 @@ builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
 

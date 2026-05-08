@@ -33,6 +33,7 @@ namespace MyStore.Service.Orders
             if (order is null) return false;
 
             // Partial update con ?? — solo actualiza si el DTO trae valor
+            // OrderNumber missing? Why is OrderNumber not in the OrderUpdateDto?
             order.TotalAmount = dto.TotalAmount ?? order.TotalAmount;
             order.CustomerName = dto.CustomerName ?? order.CustomerName;
             order.ShippingAddress = dto.ShippingAddress ?? order.ShippingAddress;

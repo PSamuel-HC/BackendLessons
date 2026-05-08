@@ -21,28 +21,19 @@ namespace MyStore.API.Controllers
             return Ok(dtos);
         }
 
-        //// GET: api/customers/{id}
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<CustomerReadDto>> GetCustomer(int id)
-        //{
-        //    var customer = await _context.Customers.FindAsync(id);
+        // GET: api/customers/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CustomerReadDto>> GetCustomer(int id)
+        {
+            CustomerReadDto customer = await customerService.GetOneCustomerAsync(id);
 
-        //    if (customer == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (customer == null)
+            {
+                return NotFound();
+            }
 
-        //    var resultDto = new CustomerReadDto
-        //    {
-        //        Id = customer.Id,
-        //        Email = customer.Email,
-        //        FullName = customer.FullName,
-        //        PointsBalance = customer.PointsBalance,
-        //        IsPremium = customer.IsPremium,
-        //    };
-
-        //    return Ok(resultDto);
-        //}
+            return Ok(customer);
+        }
 
         // POST: api/customers
         [HttpPost]

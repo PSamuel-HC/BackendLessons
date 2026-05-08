@@ -21,5 +21,11 @@ namespace MyStore.Service.Customers
             return mapper.Map<CustomerReadDto>(customer);
         }
 
+        public async Task<CustomerReadDto> GetOneCustomerAsync(int id)
+        {
+            Customer? customer = await repository.GetOneAsync(id);
+            return mapper.Map<CustomerReadDto>(customer);
+        }
+
     }
 }

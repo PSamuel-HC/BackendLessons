@@ -17,7 +17,7 @@ namespace MyStore.Service.Products
         {
             Product? p = await repository.GetById(id);
 
-            if (p == null) { } //question 
+            if (p == null) return; //question 
 
             await repository.Delete(p);
         }
@@ -41,9 +41,9 @@ namespace MyStore.Service.Products
         {
             Product? p = await repository.GetById(id);
 
-            if (p == null) { }
+            if (p == null) return;
 
-            Product product2 = mapper.Map<Product>(dto);
+            Product product2 = mapper.Map(dto, p);
             product2.Id = id;
 
             await repository.Update(product2);

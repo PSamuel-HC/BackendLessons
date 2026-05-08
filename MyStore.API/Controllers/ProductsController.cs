@@ -11,9 +11,6 @@ namespace MyStore.API.Controllers
     [Route("api/[controller]")]
     public class ProductsController(IProductService productService) : ControllerBase
     {
-        //it isnnot necessary to reassign
-
-
         // GET: api/products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetProducts()

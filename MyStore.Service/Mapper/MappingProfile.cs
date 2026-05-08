@@ -6,13 +6,18 @@ namespace MyStore.Service.Mapper
 {
     public class MappingProfile : Profile
     {
-        public MappingProfile() 
+        public MappingProfile()
         {
             CreateMap<Product, ProductReadDto>()
                 .ForMember(s => s.DisplayName, opt => opt.MapFrom(d => $"{d.Name} - {d.Manufacturer}"))
                 .ReverseMap()
                 .ForMember(s => s.Manufacturer, opt => opt.MapFrom(d => d.DisplayName.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)[1]))
                 .ForMember(s => s.Name, opt => opt.MapFrom(d => d.DisplayName.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)[0]));
+
+            CreateMap<Order, OrderReadDto>()
+                .ForMember(d => d.Status, opt => opt.MapFrom(s => s.Status.ToString()));
+
+            CreateMap<OrderCreateDto, Order>();
         }
     }
 }

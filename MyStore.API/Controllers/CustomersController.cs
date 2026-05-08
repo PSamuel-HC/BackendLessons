@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyStore.API.DTOs;
+using MyStore.Service.DTOs;
 using MyStore.Domain.Model;
 using MyStore.Infrastructure;
 

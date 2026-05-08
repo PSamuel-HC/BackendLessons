@@ -20,6 +20,11 @@ namespace MyStore.Service.Mapper
 
             CreateMap<Employee, EmployeeCreateDto>()
                 .ReverseMap();
+
+            CreateMap<Employee, EmployeeUpdateDto>()
+                .ReverseMap();
+            CreateMap<EmployeeUpdateDto, Employee>()
+                .ReverseMap();
         }
     }
 }

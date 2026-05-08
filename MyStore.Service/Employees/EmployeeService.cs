@@ -26,9 +26,19 @@ namespace MyStore.Service.Employees
             return mapper.Map<EmployeeReadDto>(newEmployee);
         }
 
+        public async Task<EmployeeReadDto?> UpdateEmployeeAsync(int id, EmployeeUpdateDto employeeUpdateDto)
+        {
+            Employee? employeefromDB = await repository.GetEmployeeByIdAsync(id);
+            if (employeefromDB == null) return null;
+            mapper.Map(employeeUpdateDto, employeefromDB);
+            await repository.UpdateEmployeeAsync(employeefromDB);
+            return mapper.Map<EmployeeReadDto>(employeefromDB);
+        }
+
         public async Task<Boolean> DeleteEmployeeAsync(int id)
         {
             return await repository.DeleteEmployeeAsync(id);
         }
+
     }
 }

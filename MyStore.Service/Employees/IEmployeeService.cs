@@ -10,6 +10,7 @@ namespace MyStore.Service.Employees
         Task<IEnumerable<EmployeeReadDto>> GetEmployeesAsync();
         Task<EmployeeReadDto?> GetEmployeeByIdAsync(int id);
         Task<EmployeeReadDto> CreateEmployeeAsync(EmployeeCreateDto employeeCreateDto);
+        Task<EmployeeReadDto?> UpdateEmployeeAsync(int id, EmployeeUpdateDto employeeUpdateDto);
         Task<Boolean> DeleteEmployeeAsync(int id);
     }
 }

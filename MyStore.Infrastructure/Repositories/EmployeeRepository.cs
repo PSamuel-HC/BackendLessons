@@ -20,12 +20,6 @@ namespace MyStore.Infrastructure.Repositories
             return employee;
         }
 
-        public Task UpdateEmployeeAsync(Employee employee)
-        {
-            context.Employees.Update(employee);
-            return Task.CompletedTask;
-        }
-
         public async Task<Boolean> DeleteEmployeeAsync(int id)
         {
             Employee? employee = await context.Employees.FindAsync(id);
@@ -33,6 +27,12 @@ namespace MyStore.Infrastructure.Repositories
             context.Employees.Remove(employee);
             await context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task UpdateEmployeeAsync(Employee employee)
+        {
+            context.Employees.Update(employee);
+            await context.SaveChangesAsync();
         }
     }
 }

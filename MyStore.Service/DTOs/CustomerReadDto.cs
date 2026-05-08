@@ -1,8 +1,9 @@
-﻿namespace MyStore.API.DTOs
+namespace MyStore.Service.DTOs
 {
-    public class CustomerCreateDto
+    public class CustomerReadDto
     {
         public int Id { get; set; }
+
         public string Email { get; set; }
 
         public string FullName { get; set; }

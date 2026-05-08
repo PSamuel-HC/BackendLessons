@@ -2,4 +2,5 @@
   <Project Path="MyStore.API/MyStore.API.csproj" />
   <Project Path="MyStore.Domain/MyStore.Domain.csproj" />
   <Project Path="MyStore.Infrastructure/MyStore.Infrastructure.csproj" />
+  <Project Path="MyStore.Service/MyStore.Service.csproj" />
 </Solution>

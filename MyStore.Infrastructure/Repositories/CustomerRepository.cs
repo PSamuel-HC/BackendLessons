@@ -16,12 +16,14 @@ namespace MyStore.Infrastructure.Repositories
             return await context.Customers.FindAsync(id);
         }
 
-        public Task<Customer> CreateAsync()
+        public async Task CreateAsync(Customer customer)
         {
-            throw new NotImplementedException();
+            context.Customers.Add(customer);
+            await context.SaveChangesAsync();
+
         }
 
-        public void UpdateAsync()
+        public Task UpdateAsync()
         {
             throw new NotImplementedException();
         }

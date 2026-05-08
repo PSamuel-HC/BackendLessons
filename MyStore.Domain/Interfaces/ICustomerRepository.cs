@@ -6,8 +6,8 @@ namespace MyStore.Domain.Interfaces
     {
         Task<IEnumerable<Customer>> GetAllAsync();
         Task<Customer?> GetOneAsync(int id);
-        Task<Customer> CreateAsync();
-        void UpdateAsync();
+        Task CreateAsync(Customer customer);
+        Task UpdateAsync();
         void DeleteAsync();
     }
 }

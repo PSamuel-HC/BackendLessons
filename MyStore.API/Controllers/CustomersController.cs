@@ -44,35 +44,15 @@ namespace MyStore.API.Controllers
         //    return Ok(resultDto);
         //}
 
-        //// POST: api/products
-        //[HttpPost]
-        //public async Task<ActionResult<CustomerReadDto>> CreateCustomer(CustomerCreateDto dto)
-        //{
-        //    // 1. MAPPING: DTO -> Entity
-        //    var customer = new Customer
-        //    {
-        //        Email = dto.Email,
-        //        FullName = dto.FullName,
-        //        IsPremium = dto.IsPremium,
-        //    };
+        // POST: api/customers
+        [HttpPost]
+        public async Task<ActionResult<CustomerReadDto>> CreateCustomer(CustomerCreateDto dto)
+        {
 
-        //    // 2. Persist to Database
-        //    _context.Customers.Add(customer);
-        //    await _context.SaveChangesAsync();
+            CustomerReadDto resultDto = await customerService.CreateCustomerAsync(dto);
 
-        //    // 3. Convert back to ReadDto to show the user the result (with the new ID)
-        //    var resultDto = new CustomerReadDto
-        //    {
-        //        Id = customer.Id,
-        //        Email = customer.Email,
-        //        FullName = customer.FullName,
-        //        PointsBalance = customer.PointsBalance,
-        //        IsPremium = customer.IsPremium,
-        //        LastPurchaseDate = customer.LastPurchaseDate,
-        //    };
-
-        //    return CreatedAtAction(nameof(GetCustomers), new { id = resultDto.Id }, resultDto);
-        //}
+            return CreatedAtAction(nameof(GetCustomers), new { id = resultDto.Id }, resultDto);
+        }
 
         //// PUT: api/{id}
         //[HttpPut("{id}")]

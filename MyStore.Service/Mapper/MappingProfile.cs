@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using MyStore.Domain.Model;
 using MyStore.Service.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyStore.Service.Mapper
 {
@@ -11,8 +8,9 @@ namespace MyStore.Service.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Customer, CustomerReadDto>()
-                .ReverseMap();
+            CreateMap<Customer, CustomerReadDto>().ReverseMap();
+
+            CreateMap<Customer, CustomerCreateDto>().ReverseMap();
         }
     }
 }

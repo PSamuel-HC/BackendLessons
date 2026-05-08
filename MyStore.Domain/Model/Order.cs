@@ -1,7 +1,4 @@
 ﻿using MyStore.Domain.Emuns;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyStore.Domain.Model
 {

@@ -1,17 +1,16 @@
-﻿using MyStore.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyStore.Domain.Interfaces;
 using MyStore.Domain.Model;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Text;
 
 namespace MyStore.Infrastructure.Repositories
 {
     internal class ProductRepository(MyStoreDbContext context) : IProductRepository
     {
-        public async Task Create(Product product)
+        public async Task<Product> Create(Product product)
         {
             await context.Products.AddAsync(product);
             await context.SaveChangesAsync();
+            return  product;
         }
 
         public async Task Delete(Product product)
@@ -32,8 +31,8 @@ namespace MyStore.Infrastructure.Repositories
 
         public async Task Update(Product product)
         {
-           context.Products.Update(product);
-           await context.SaveChangesAsync();
+            context.Products.Update(product);
+            await context.SaveChangesAsync();
         }
     }
 }

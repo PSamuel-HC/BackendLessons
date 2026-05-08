@@ -1,4 +1,4 @@
-﻿namespace MyStore.API.DTOs
+﻿namespace MyStore.Service.DTOs
 {
     public class ProductCreateDto
     {

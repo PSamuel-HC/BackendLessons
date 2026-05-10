@@ -6,8 +6,14 @@ namespace MyStore.Service.Mapper
 {
     public class MappingProfile : Profile
     {
-        public MappingProfile() 
+        public MappingProfile()
         {
+            CreateMap<Customer, CustomerReadDto>().ReverseMap();
+
+            CreateMap<Customer, CustomerCreateDto>().ReverseMap();
+
+            CreateMap<Customer, CustomerUpdateDto>().ReverseMap();
+
             CreateMap<Product, ProductReadDto>()
                 .ForMember(s => s.DisplayName, opt => opt.MapFrom(d => $"{d.Name} - {d.Manufacturer}"))
                 .ReverseMap()
@@ -30,8 +36,6 @@ namespace MyStore.Service.Mapper
                 
             CreateMap<EmployeeUpdateDto, Employee>()
                 .ReverseMap();
-            
-
         }
     }
 }

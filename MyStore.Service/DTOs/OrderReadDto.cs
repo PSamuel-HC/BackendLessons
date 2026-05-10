@@ -1,4 +1,6 @@
-﻿namespace MyStore.Service.DTOs
+﻿using MyStore.Domain.Emuns;
+
+namespace MyStore.Service.DTOs
 {
     public class OrderReadDto
     {

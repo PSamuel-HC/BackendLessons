@@ -18,8 +18,8 @@ namespace MyStore.API.Controllers
         {
             IEnumerable<CustomerReadDto> dtos = await customerService.GetCustomersAsync();
 
-        //    return Ok(dtos);
-        //}
+            return Ok(dtos);
+        }
 
         // GET: api/customers/{id}
         [HttpGet("{id}")]
@@ -42,8 +42,8 @@ namespace MyStore.API.Controllers
 
             CustomerReadDto resultDto = await customerService.CreateCustomerAsync(dto);
 
-        //    return CreatedAtAction(nameof(GetCustomers), new { id = resultDto.Id }, resultDto);
-        //}
+            return CreatedAtAction(nameof(GetCustomers), new { id = resultDto.Id }, resultDto);
+        }
 
         // PUT: api/customers/{id}
         [HttpPut("{id}")]

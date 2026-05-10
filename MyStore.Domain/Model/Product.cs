@@ -9,8 +9,5 @@
         public string Manufacturer { get; set; } = string.Empty;
         public int WarrantyMonths { get; set; }
         public string Description { get; set; } = string.Empty;
-
-
-
     }
 }

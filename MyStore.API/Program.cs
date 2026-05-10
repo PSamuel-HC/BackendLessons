@@ -2,8 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using MyStore.Domain.Interfaces;
 using MyStore.Infrastructure;
 using MyStore.Infrastructure.Repositories;
-using MyStore.Service.Mapper;
+using MyStore.Service.Employees;
 using MyStore.Service.Products;
+using System.Text.Json.Serialization;
+using MyStore.Service.Mapper;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,15 +15,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 
 
-builder.Services.AddControllers();
-
 builder.Services.AddDbContext<MyStoreDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options => {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

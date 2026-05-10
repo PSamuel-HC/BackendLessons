@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-//using MyStore.API.DTOs;
 using MyStore.Domain.Model;
 using MyStore.Service.DTOs;
 using MyStore.Service.Products;
@@ -44,7 +43,7 @@ namespace MyStore.API.Controllers
         {
             await productService.UpdateProduct(id, dto);
 
-            return NoContent();
+           return NoContent();
         }
 
         // DELETE: api/products/{id}
@@ -53,7 +52,7 @@ namespace MyStore.API.Controllers
         {
             await productService.DeleteProduct(id);
 
-            return NoContent();
+           return NoContent();
         }
 
 

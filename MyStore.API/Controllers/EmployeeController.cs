@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyStore.Domain.Model;
-using MyStore.Infrastructure;
 using MyStore.Service.DTOs;
-using System.Globalization;
+using MyStore.Service.Employees;
 
 namespace MyStore.API.Controllers
 {

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MyStore.API.Middlewares;
 using MyStore.Domain.Interfaces;
 using MyStore.Infrastructure;
 using MyStore.Infrastructure.Repositories;
@@ -34,6 +35,9 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseMiddleware<LoggingMiddleware>();
+app.UseMiddleware<HeaderMiddleware>();
 
 app.UseHttpsRedirection();
 

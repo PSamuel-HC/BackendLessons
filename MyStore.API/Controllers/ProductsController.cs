@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyStore.API.Annotations;
 using MyStore.Service.DTOs;
 using MyStore.Service.Products;
 
@@ -11,20 +12,10 @@ namespace MyStore.API.Controllers
 
         // GET: api/products
         [HttpGet]
+        [EndpointAttribute]
         public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetProducts()
         {
             IEnumerable<ProductReadDto> products = await productService.GetProductsAsync();
-
-            // MAPPING: Entity -> DTO
-            //var dtos = products.Select(p => new ProductReadDto
-            //{
-            //    Id = p.Id,
-            //    SKU = p.SKU,
-            //    Price = p.Price,
-            //    WarrantyMonths = p.WarrantyMonths,
-            //    Description = p.Description,
-            //    DisplayName = p.Name + " - " + p.Manufacturer
-            //});
 
             return Ok(products);
         }
@@ -51,38 +42,39 @@ namespace MyStore.API.Controllers
         //    return Ok(dto);
         //}
 
-        //// POST: api/products
-        //[HttpPost]
-        //public async Task<ActionResult<ProductReadDto>> CreateProduct(ProductCreateDto dto)
-        //{
-        //    // 1. MAPPING: DTO -> Entity
-        //    var product = new Product
-        //    {
-        //        Name = dto.Name,
-        //        SKU = dto.SKU,
-        //        Price = dto.Price,
-        //        Manufacturer = dto.Manufacturer,
-        //        WarrantyMonths = dto.WarrantyMonths,
-        //        Description = dto.Description
-        //    };
+        // POST: api/products
+        [HttpPost]
+        public async Task<ActionResult<ProductReadDto>> CreateProduct(ProductCreateDto dto)
+        {
+            ProductReadDto productResponse = await productService.CreateProductAsync(dto);
+            //// 1. MAPPING: DTO -> Entity
+            //var product = new Product
+            //{
+            //    Name = dto.Name,
+            //    SKU = dto.SKU,
+            //    Price = dto.Price,
+            //    Manufacturer = dto.Manufacturer,
+            //    WarrantyMonths = dto.WarrantyMonths,
+            //    Description = dto.Description
+            //};
 
-        //    // 2. Persist to Database
-        //    _context.Products.Add(product);
-        //    await _context.SaveChangesAsync();
+            //// 2. Persist to Database
+            //_context.Products.Add(product);
+            //await _context.SaveChangesAsync();
 
-        //    // 3. Convert back to ReadDto to show the user the result (with the new ID)
-        //    var resultDto = new ProductReadDto
-        //    {
-        //        Id = product.Id,
-        //        SKU = product.SKU,
-        //        Price = product.Price,
-        //        WarrantyMonths = product.WarrantyMonths,
-        //        Description = product.Description,
-        //        DisplayName = product.Name + " - " + product.Manufacturer
-        //    };
+            //// 3. Convert back to ReadDto to show the user the result (with the new ID)
+            //var resultDto = new ProductReadDto
+            //{
+            //    Id = product.Id,
+            //    SKU = product.SKU,
+            //    Price = product.Price,
+            //    WarrantyMonths = product.WarrantyMonths,
+            //    Description = product.Description,
+            //    DisplayName = product.Name + " - " + product.Manufacturer
+            //};
 
-        //    return CreatedAtAction(nameof(GetProducts), new { id = resultDto.Id }, resultDto);
-        //}
+            return CreatedAtAction(nameof(GetProducts), new { id = productResponse.Id }, productResponse);
+        }
 
 
 

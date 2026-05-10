@@ -1,13 +1,17 @@
-﻿namespace MyStore.Service.DTOs
+﻿using MyStore.Service.Annotations;
+using System.ComponentModel.DataAnnotations;
+
+namespace MyStore.Service.DTOs
 {
     public class ProductCreateDto
     {
-        // The User shouldn't send an ID; the DB generates it.
+        [Required]
         public string Name { get; set; } = string.Empty;
 
         public string SKU { get; set; } = string.Empty;
 
         public decimal Price { get; set; }
+
         public string Manufacturer { get; set; } = string.Empty;
 
         public int WarrantyMonths { get; set; }

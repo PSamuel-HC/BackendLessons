@@ -7,6 +7,15 @@ namespace MyStore.Service.Products
 {
     public class ProductService(IProductRepository repository, IMapper mapper) : IProductService
     {
+        public async Task<ProductReadDto> CreateProductAsync(ProductCreateDto product)
+        {
+            Product productRepository = mapper.Map<Product>(product);
+            
+            Product createdProduct = await repository.CreateProductAsync(productRepository);
+            
+            return mapper.Map<ProductReadDto>(createdProduct);
+        }
+
         public async Task<IEnumerable<ProductReadDto>> GetProductsAsync()
         {
             IEnumerable<Product> products = await repository.GetAllAsync();

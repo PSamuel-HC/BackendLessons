@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyStore.Domain.Model
+﻿namespace MyStore.Domain.Model
 {
     public class Product
     {
@@ -13,8 +9,5 @@ namespace MyStore.Domain.Model
         public string Manufacturer { get; set; } = string.Empty;
         public int WarrantyMonths { get; set; }
         public string Description { get; set; } = string.Empty;
-
-
-
     }
 }

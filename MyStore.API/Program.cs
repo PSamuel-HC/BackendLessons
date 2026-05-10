@@ -5,6 +5,8 @@ using MyStore.Infrastructure.Repositories;
 using MyStore.Service.Mapper;
 using MyStore.Service.Customers;
 using System.Text.Json.Serialization;
+using MyStore.Service.Employees;
+using MyStore.Service.Products;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,10 @@ builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 var app = builder.Build();
 
@@ -44,7 +50,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),

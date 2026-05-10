@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyStore.API.DTOs;
 using MyStore.Domain.Model;
 using MyStore.Infrastructure;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using MyStore.Service.DTOs;
 
 namespace MyStore.API.Controllers
 {
@@ -12,7 +11,7 @@ namespace MyStore.API.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly MyStoreDbContext _context;
-        
+
         public OrdersController(MyStoreDbContext context)
         {
             _context = context;
@@ -23,7 +22,7 @@ namespace MyStore.API.Controllers
         public async Task<ActionResult<IEnumerable<OrderReadDto>>> GetOrders()
         {
             var orders = await _context.Orders.ToListAsync();
-            
+
             var dtos = orders.Select(o => new OrderReadDto
             {
                 Id = o.Id,
@@ -35,7 +34,7 @@ namespace MyStore.API.Controllers
             });
 
             return Ok(dtos);
-     
+
         }
 
         [HttpGet("{id}")]
@@ -61,10 +60,10 @@ namespace MyStore.API.Controllers
         {
             var order = new Order
             {
-               OrderNumber = dto.OrderNumber,
-               CustomerName = dto.CustomerName,
-               TotalAmount = dto.TotalAmount,
-               ShippingAddress = dto.ShippingAddress
+                OrderNumber = dto.OrderNumber,
+                CustomerName = dto.CustomerName,
+                TotalAmount = dto.TotalAmount,
+                ShippingAddress = dto.ShippingAddress
             };
 
             _context.Orders.Add(order);
@@ -82,7 +81,7 @@ namespace MyStore.API.Controllers
             };
 
             return CreatedAtAction(nameof(GetOrders), new { id = resultDto.Id }, resultDto);
-            
+
         }
 
         // PUT: api/orders/{id}

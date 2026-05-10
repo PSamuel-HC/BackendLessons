@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyStore.API.DTOs;
 using MyStore.Domain.Model;
 using MyStore.Infrastructure;
+using MyStore.Service.DTOs;
 
 namespace MyStore.API.Controllers
 {
@@ -92,7 +92,8 @@ namespace MyStore.API.Controllers
 
         // PUT: api/{id}
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateCustomer(int id, CustomerUpdateDto dto) {
+        public async Task<ActionResult> UpdateCustomer(int id, CustomerUpdateDto dto)
+        {
 
             var customer = await _context.Customers.FindAsync(id);
 
@@ -110,7 +111,7 @@ namespace MyStore.API.Controllers
         }
 
         // DELETE: api/customers/{id}
-        [HttpDelete("{id}")] 
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteCustomer(int id)
         {
             var customer = await _context.Customers.FindAsync(id);

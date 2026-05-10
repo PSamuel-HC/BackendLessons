@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyStore.Domain.Model
+namespace MyStore.Service.DTOs
 {
-    public class EmployeeUpdateDto
+    public class EmployeeCreateDto
     {
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;

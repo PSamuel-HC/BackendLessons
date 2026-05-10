@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MyStore.Domain.Model;
 using MyStore.Service.DTOs;
 using MyStore.Service.Products;
 
@@ -8,119 +10,50 @@ namespace MyStore.API.Controllers
     [Route("api/[controller]")]
     public class ProductsController(IProductService productService) : ControllerBase
     {
-
         // GET: api/products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetProducts()
         {
-            IEnumerable<ProductReadDto> products = await productService.GetProductsAsync();
-
-            // MAPPING: Entity -> DTO
-            //var dtos = products.Select(p => new ProductReadDto
-            //{
-            //    Id = p.Id,
-            //    SKU = p.SKU,
-            //    Price = p.Price,
-            //    WarrantyMonths = p.WarrantyMonths,
-            //    Description = p.Description,
-            //    DisplayName = p.Name + " - " + p.Manufacturer
-            //});
-
-            return Ok(products);
+            IEnumerable<ProductReadDto> dtos = await productService.GetProductsAsync();
+            return Ok(dtos);
         }
 
         // GET: api/products/{id}
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<ProductReadDto>> GetProduct(int id)
-        //{
-        //    var product = await _context.Products.FindAsync(id);
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductReadDto>> GetProduct(int id)
+        {
+            ProductReadDto dto = await productService.GetProduct(id);
+            return Ok(dto);
+        }
 
-        //    if (product == null)
-        //        return NotFound();
-
-        //    var dto = new ProductReadDto
-        //    {
-        //        Id = product.Id,
-        //        SKU = product.SKU,
-        //        Price = product.Price,
-        //        WarrantyMonths = product.WarrantyMonths,
-        //        Description = product.Description,
-        //        DisplayName = product.Name + " - " + product.Manufacturer
-        //    };
-
-        //    return Ok(dto);
-        //}
-
-        //// POST: api/products
-        //[HttpPost]
-        //public async Task<ActionResult<ProductReadDto>> CreateProduct(ProductCreateDto dto)
-        //{
-        //    // 1. MAPPING: DTO -> Entity
-        //    var product = new Product
-        //    {
-        //        Name = dto.Name,
-        //        SKU = dto.SKU,
-        //        Price = dto.Price,
-        //        Manufacturer = dto.Manufacturer,
-        //        WarrantyMonths = dto.WarrantyMonths,
-        //        Description = dto.Description
-        //    };
-
-        //    // 2. Persist to Database
-        //    _context.Products.Add(product);
-        //    await _context.SaveChangesAsync();
-
-        //    // 3. Convert back to ReadDto to show the user the result (with the new ID)
-        //    var resultDto = new ProductReadDto
-        //    {
-        //        Id = product.Id,
-        //        SKU = product.SKU,
-        //        Price = product.Price,
-        //        WarrantyMonths = product.WarrantyMonths,
-        //        Description = product.Description,
-        //        DisplayName = product.Name + " - " + product.Manufacturer
-        //    };
-
-        //    return CreatedAtAction(nameof(GetProducts), new { id = resultDto.Id }, resultDto);
-        //}
+        // POST: api/products
+        [HttpPost]
+        public async Task<ActionResult<ProductReadDto>> CreateProduct(ProductCreateDto dto)
+        {
+           
+            ProductReadDto resultDto = await productService.CreateProduct(dto);
+            return CreatedAtAction(nameof(GetProducts), new { id = resultDto.Id }, resultDto);
+        }
 
 
 
-        //// PUT: api/products/{id}
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> UpdateProduct(int id, ProductUpdateDto dto)
-        //{
-        //    var product = await _context.Products.FindAsync(id);
+        // PUT: api/products/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, ProductUpdateDto dto)
+        {
+            await productService.UpdateProduct(id, dto);
 
-        //    if (product == null)
-        //        return NotFound();
+           return NoContent();
+        }
 
-        //    product.Name = dto.Name;
-        //    product.SKU = dto.SKU;
-        //    product.Price = dto.Price;
-        //    product.Manufacturer = dto.Manufacturer;
-        //    product.WarrantyMonths = dto.WarrantyMonths;
-        //    product.Description = dto.Description;
+        // DELETE: api/products/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            await productService.DeleteProduct(id);
 
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
-
-        //// DELETE: api/products/{id}
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteProduct(int id)
-        //{
-        //    var product = await _context.Products.FindAsync(id);
-
-        //    if (product == null)
-        //        return NotFound();
-
-        //    _context.Products.Remove(product);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
+           return NoContent();
+        }
 
 
     }

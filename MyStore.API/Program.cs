@@ -3,9 +3,9 @@ using MyStore.Domain.Interfaces;
 using MyStore.Infrastructure;
 using MyStore.Infrastructure.Repositories;
 using MyStore.Service.Employees;
-using MyStore.Service.Mapper;
 using MyStore.Service.Products;
 using System.Text.Json.Serialization;
+using MyStore.Service.Mapper;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,7 +47,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),

@@ -2,5 +2,5 @@
   <Project Path="MyStore.API/MyStore.API.csproj" />
   <Project Path="MyStore.Domain/MyStore.Domain.csproj" />
   <Project Path="MyStore.Infrastructure/MyStore.Infrastructure.csproj" />
-  <Project Path="MyStore.Service/MyStore.Service.csproj" Id="0fa3082e-a133-49af-be0c-235678a30517" />
+  <Project Path="MyStore.Service/MyStore.Service.csproj" />
 </Solution>

@@ -13,6 +13,10 @@ namespace MyStore.Service.Mapper
                 .ReverseMap()
                 .ForMember(s => s.Manufacturer, opt => opt.MapFrom(d => d.DisplayName.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)[1]))
                 .ForMember(s => s.Name, opt => opt.MapFrom(d => d.DisplayName.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)[0]));
+            
+            CreateMap<Product, ProductCreateDto>().ReverseMap();
+
+            CreateMap<Product, ProductUpdateDto>().ReverseMap();
 
             CreateMap<Employee, EmployeeReadDto>()
                 .ForMember(d => d.FullName, opt => opt.MapFrom(s => $"{s.FirstName} {s.LastName}"))
@@ -23,8 +27,11 @@ namespace MyStore.Service.Mapper
 
             CreateMap<Employee, EmployeeUpdateDto>()
                 .ReverseMap();
+                
             CreateMap<EmployeeUpdateDto, Employee>()
                 .ReverseMap();
+            
+
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyStore.Domain.Model;
 using MyStore.Infrastructure;
+using MyStore.Service.DTOs;
 
 namespace MyStore.API.Controllers
 {

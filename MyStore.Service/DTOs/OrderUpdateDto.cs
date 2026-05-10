@@ -3,7 +3,7 @@
 namespace MyStore.Service.DTOs
 {
     public class OrderUpdateDto
-    { 
+    {
         public string? CustomerName { get; set; }
         public decimal? TotalAmount { get; set; }
         public OrderStatus? Status { get; set; }

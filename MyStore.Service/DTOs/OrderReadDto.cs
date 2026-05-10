@@ -1,7 +1,7 @@
 ﻿namespace MyStore.Service.DTOs
 {
     public class OrderReadDto
-    { 
+    {
         public int Id { get; set; }
         public string OrderNumber { get; set; }
         public string CustomerName { get; set; }

@@ -2,11 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using MyStore.Domain.Interfaces;
 using MyStore.Infrastructure;
 using MyStore.Infrastructure.Repositories;
-using MyStore.Service.Mapper;
 using MyStore.Service.Customers;
-using System.Text.Json.Serialization;
 using MyStore.Service.Employees;
+using MyStore.Service.Mapper;
+using MyStore.Service.Orders;
 using MyStore.Service.Products;
+using System.Text.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,8 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
 

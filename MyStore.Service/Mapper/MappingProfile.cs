@@ -36,6 +36,11 @@ namespace MyStore.Service.Mapper
                 
             CreateMap<EmployeeUpdateDto, Employee>()
                 .ReverseMap();
+
+            CreateMap<Order, OrderReadDto>()
+                .ForMember(d => d.Status, opt => opt.MapFrom(s => s.Status.ToString()));
+
+            CreateMap<OrderCreateDto, Order>();
         }
     }
 }

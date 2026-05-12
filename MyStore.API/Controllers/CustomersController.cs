@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MyStore.Service.DTOs;
-using MyStore.Domain.Model;
-using MyStore.Infrastructure;
 using MyStore.Service.Customers;
 
 namespace MyStore.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class CustomersController(ICustomerService customerService) : ControllerBase
     {
 

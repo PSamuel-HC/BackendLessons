@@ -7,7 +7,9 @@ using MyStore.Service.Employees;
 using MyStore.Service.Mapper;
 using MyStore.Service.Orders;
 using MyStore.Service.Products;
+using MyStore.Service.Validators;
 using System.Text.Json.Serialization;
+using FluentValidation;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +27,17 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
+builder.Services.AddValidatorsFromAssemblyContaining<CustomerCreateDtoValidator>();
+
+
 builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
+
+
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new Asp.Versioning.ApiVersion(1, 0);
+}).AddMvc();
+
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();

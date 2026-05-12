@@ -5,7 +5,7 @@ using MyStore.Service.Orders;
 namespace MyStore.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class OrdersController(IOrderService orderService) : ControllerBase
     {
 

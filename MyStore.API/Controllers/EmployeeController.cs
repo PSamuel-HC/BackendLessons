@@ -5,7 +5,7 @@ using MyStore.Service.Employees;
 namespace MyStore.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class EmployeeController(IEmployeeService employeeService) : ControllerBase
     {
         // GET: api/employees

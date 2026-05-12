@@ -1,17 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyStore.Domain.Model;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
+using MyStore.API.Annotations.MyStore.API.Annotations;
 using MyStore.Service.DTOs;
 using MyStore.Service.Products;
 
 namespace MyStore.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ProductsController(IProductService productService) : ControllerBase
     {
         // GET: api/products
         [HttpGet]
+        [EndpointInformation]
         public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetProducts()
         {
             IEnumerable<ProductReadDto> dtos = await productService.GetProductsAsync();

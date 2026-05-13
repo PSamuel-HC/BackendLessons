@@ -6,7 +6,7 @@ namespace MyStore.Service.Validators
 {
     public class CustomerCreateDtoValidator : AbstractValidator<CustomerCreateDto>
     {
-        public CustomerCreateDtoValidator(ICustomerRepository repository) 
+        public CustomerCreateDtoValidator(ICustomerRepository repository)
         {
         }
     }

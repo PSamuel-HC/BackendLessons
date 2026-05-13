@@ -7,7 +7,6 @@ using MyStore.Service.Employees;
 using MyStore.Service.Mapper;
 using MyStore.Service.Orders;
 using MyStore.Service.Products;
-using MyStore.Service.Validators;
 using System.Text.Json.Serialization;
 using FluentValidation;
 using MyStore.Service.Validators.CustomerDtoValidators;

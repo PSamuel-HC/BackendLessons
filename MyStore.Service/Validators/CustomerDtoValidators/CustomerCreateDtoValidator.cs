@@ -2,7 +2,7 @@
 using MyStore.Domain.Interfaces;
 using MyStore.Service.DTOs;
 
-namespace MyStore.Service.Validators
+namespace MyStore.Service.Validators.CustomerDtoValidators
 {
     public class CustomerCreateDtoValidator : AbstractValidator<CustomerCreateDto>
     {

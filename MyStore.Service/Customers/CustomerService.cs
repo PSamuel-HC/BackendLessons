@@ -3,7 +3,6 @@ using FluentValidation;
 using MyStore.Domain.Interfaces;
 using MyStore.Domain.Model;
 using MyStore.Service.DTOs;
-using MyStore.Service.Validators;
 using MyStore.Service.Validators.CustomerDtoValidators;
 
 namespace MyStore.Service.Customers

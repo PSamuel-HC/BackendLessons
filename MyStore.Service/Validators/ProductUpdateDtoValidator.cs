@@ -1,14 +1,12 @@
 ﻿using FluentValidation;
+using MyStore.Domain.Interfaces;
 using MyStore.Service.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyStore.Service.Validators
 {
     public class ProductUpdateDtoValidator : AbstractValidator<ProductUpdateDto>
     {
-        public ProductUpdateDtoValidator()
+        public ProductUpdateDtoValidator(IProductRepository repository)
         {
             RuleFor(product => product.Name)
                 .NotEmpty()
@@ -42,6 +40,12 @@ namespace MyStore.Service.Validators
             RuleFor(product => product.Description)
                .MaximumLength(1000)
                .WithMessage("Product description can't have more than 1000 characters");
+
+            RuleFor(x => x.Price)
+                .GreaterThan(0)
+                .WithMessage("Price must be greater than 0.")
+                .Must(price => decimal.Round(price, 2) == price)
+                .WithMessage("Price must have at most 2 decimal places");
         }
     }
 }

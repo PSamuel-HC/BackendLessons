@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyStore.Service.DTOs;
 using MyStore.Service.Customers;
+using MyStore.Service.DTOs.CustomerDTOs;
 
 namespace MyStore.API.Controllers
 {

@@ -2,7 +2,7 @@
 using FluentValidation;
 using MyStore.Domain.Interfaces;
 using MyStore.Domain.Model;
-using MyStore.Service.DTOs;
+using MyStore.Service.DTOs.CustomerDTOs;
 using MyStore.Service.Validators.CustomerDtoValidators;
 
 namespace MyStore.Service.Customers
@@ -10,7 +10,7 @@ namespace MyStore.Service.Customers
     public class CustomerService(
         ICustomerRepository repository,
         IMapper mapper,
-        IValidator<CustomerCreateDto> createValidator,
+        CustomerCreateDtoValidator createValidator,
         CustomerUpdateDtoValidator updateValidator) : ICustomerService
     {
         public async Task<IEnumerable<CustomerReadDto>> GetCustomersAsync()

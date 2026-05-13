@@ -28,6 +28,7 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddValidatorsFromAssemblyContaining<CustomerCreateDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<OrderCreateDtoValidators>();
 
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);

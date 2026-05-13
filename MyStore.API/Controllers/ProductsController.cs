@@ -52,9 +52,17 @@ namespace MyStore.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, ProductUpdateDto dto)
         {
-            await productService.UpdateProduct(id, dto);
+            try
+            {
+                await productService.UpdateProduct(id, dto);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return BadRequest();
+            }
 
-           return NoContent();
         }
 
         // DELETE: api/products/{id}
@@ -63,7 +71,7 @@ namespace MyStore.API.Controllers
         {
             await productService.DeleteProduct(id);
 
-           return NoContent();
+            return NoContent();
         }
 
 

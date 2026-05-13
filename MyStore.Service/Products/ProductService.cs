@@ -10,11 +10,13 @@ namespace MyStore.Service.Products
     public class ProductService(
         IProductRepository repository,
         IMapper mapper,
-        ProductCreateDtoValidator validator) : IProductService
+        ProductCreateDtoValidator validatorCreate,
+        ProductUpdateDtoValidator validatorUpdate
+        ) : IProductService
     {
         public async Task<ProductReadDto> CreateProduct(ProductCreateDto dto)
         {
-            validator.ValidateAndThrow(dto);
+            validatorCreate.ValidateAndThrow(dto);
             Product p = await repository.Create(mapper.Map<Product>(dto));
             return mapper.Map<ProductReadDto>(p);
         }
@@ -45,6 +47,7 @@ namespace MyStore.Service.Products
 
         public async Task UpdateProduct(int id, ProductUpdateDto dto)
         {
+            validatorUpdate.ValidateAndThrow(dto);
             Product? p = await repository.GetById(id);
 
             if (p == null) return;

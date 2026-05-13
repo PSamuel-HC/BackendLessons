@@ -27,12 +27,6 @@ namespace MyStore.Service.Validators
                 .MaximumLength(150)
                 .WithMessage("Product manufacturer can't have more than 150 characters");
 
-            RuleFor(product => product.Manufacturer)
-                .NotEmpty()
-                .WithMessage("Product manufacturer can't be empty")
-                .MaximumLength(150)
-                .WithMessage("Product manufacturer can't have more than 150 characters");
-
             RuleFor(product => product.WarrantyMonths)
                 .InclusiveBetween(0, 120)
                 .WithMessage("Product warranty months must be between 0 and 120");

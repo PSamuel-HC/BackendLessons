@@ -9,7 +9,8 @@ namespace MyStore.Service.Customers
 {
     public class CustomerService(
         ICustomerRepository repository,
-        IMapper mapper) : ICustomerService
+        IMapper mapper,
+        IValidator<CustomerCreateDto> validator) : ICustomerService
     {
         public async Task<IEnumerable<CustomerReadDto>> GetCustomersAsync()
         {
@@ -19,6 +20,7 @@ namespace MyStore.Service.Customers
 
         public async Task<CustomerReadDto> CreateCustomerAsync(CustomerCreateDto dto)
         {
+            await validator.ValidateAndThrowAsync(dto);
             Customer customer = mapper.Map<Customer>(dto);
             await repository.CreateAsync(customer);
             return mapper.Map<CustomerReadDto>(customer);

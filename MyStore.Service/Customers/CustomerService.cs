@@ -4,13 +4,15 @@ using MyStore.Domain.Interfaces;
 using MyStore.Domain.Model;
 using MyStore.Service.DTOs;
 using MyStore.Service.Validators;
+using MyStore.Service.Validators.CustomerDtoValidators;
 
 namespace MyStore.Service.Customers
 {
     public class CustomerService(
         ICustomerRepository repository,
         IMapper mapper,
-        IValidator<CustomerCreateDto> validator) : ICustomerService
+        IValidator<CustomerCreateDto> createValidator,
+        CustomerUpdateDtoValidator updateValidator) : ICustomerService
     {
         public async Task<IEnumerable<CustomerReadDto>> GetCustomersAsync()
         {
@@ -20,7 +22,7 @@ namespace MyStore.Service.Customers
 
         public async Task<CustomerReadDto> CreateCustomerAsync(CustomerCreateDto dto)
         {
-            await validator.ValidateAndThrowAsync(dto);
+            await createValidator.ValidateAndThrowAsync(dto);
             Customer customer = mapper.Map<Customer>(dto);
             await repository.CreateAsync(customer);
             return mapper.Map<CustomerReadDto>(customer);
@@ -34,6 +36,8 @@ namespace MyStore.Service.Customers
 
          public async Task<bool> UpdateCustomerAsync(int id, CustomerUpdateDto customerUpdateDto)
         {
+            await updateValidator.ValidateAndThrowAsync(customerUpdateDto);
+
             var customer = await repository.GetOneAsync(id);
 
             if (customer == null)

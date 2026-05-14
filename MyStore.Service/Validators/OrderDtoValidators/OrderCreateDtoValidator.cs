@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
 using MyStore.Domain.Interfaces;
-using MyStore.Service.DTOs;
+using MyStore.Service.DTOs.OrderDTOs;
 
-namespace MyStore.Service.Validators
+namespace MyStore.Service.Validators.OrderDtoValidators
 {
     public class OrderCreateDtoValidators : AbstractValidator<OrderCreateDto>
     {

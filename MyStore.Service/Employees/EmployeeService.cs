@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MyStore.Domain.Interfaces;
 using MyStore.Domain.Model;
-using MyStore.Service.DTOs;
+using MyStore.Service.DTOs.EmployeeDTOs;
 
 namespace MyStore.Service.Employees
 {

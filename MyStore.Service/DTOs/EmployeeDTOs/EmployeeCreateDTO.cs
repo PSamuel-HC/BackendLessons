@@ -1,4 +1,4 @@
-namespace MyStore.Service.DTOs
+namespace MyStore.Service.DTOs.EmployeeDTOs
 {
     public class EmployeeCreateDto : EmployeeDto { }
 }

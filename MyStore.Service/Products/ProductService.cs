@@ -2,8 +2,8 @@
 using FluentValidation;
 using MyStore.Domain.Interfaces;
 using MyStore.Domain.Model;
-using MyStore.Service.DTOs;
-using MyStore.Service.Validators;
+using MyStore.Service.DTOs.ProductDTOs;
+using MyStore.Service.Validators.ProductDtoValidators;
 
 namespace MyStore.Service.Products
 {

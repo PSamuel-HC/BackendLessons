@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyStore.Service.DTOs;
 using MyStore.Service.Orders;
 using FluentValidation;
+using MyStore.Service.DTOs.OrderDTOs;
 
 
 namespace MyStore.API.Controllers

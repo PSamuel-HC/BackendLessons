@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using MyStore.Domain.Interfaces;
-using MyStore.Service.DTOs;
+using MyStore.Service.DTOs.ProductDTOs;
 
-namespace MyStore.Service.Validators
+namespace MyStore.Service.Validators.ProductDtoValidators
 {
     public class ProductCreateDtoValidator : AbstractValidator<ProductCreateDto>
     {

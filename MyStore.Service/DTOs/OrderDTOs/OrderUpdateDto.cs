@@ -1,6 +1,6 @@
 ﻿using MyStore.Domain.Emuns;
 
-namespace MyStore.Service.DTOs
+namespace MyStore.Service.DTOs.OrderDTOs
 {
     public class OrderUpdateDto
     {

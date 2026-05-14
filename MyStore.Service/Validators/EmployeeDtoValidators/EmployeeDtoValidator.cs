@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using MyStore.Service.DTOs;
+using MyStore.Service.DTOs.EmployeeDTOs;
 using System.Globalization;
 
-namespace MyStore.Service.Validators
+namespace MyStore.Service.Validators.EmployeeDtoValidators
 {
     public class EmployeeDtoValidator : AbstractValidator<EmployeeDto>
     {

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MyStore.Domain.Model;
-using MyStore.Service.DTOs;
 using MyStore.Service.DTOs.CustomerDTOs;
+using MyStore.Service.DTOs.EmployeeDTOs;
+using MyStore.Service.DTOs.OrderDTOs;
+using MyStore.Service.DTOs.ProductDTOs;
 
 namespace MyStore.Service.Mapper
 {

@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using MyStore.API.Annotations.MyStore.API.Annotations;
-using MyStore.Service.DTOs;
+using MyStore.Service.DTOs.ProductDTOs;
 using MyStore.Service.Products;
 using System.ComponentModel.DataAnnotations;
 

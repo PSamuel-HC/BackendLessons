@@ -2,8 +2,8 @@
 using FluentValidation;
 using MyStore.Domain.Interfaces;
 using MyStore.Domain.Model;
-using MyStore.Service.DTOs;
-using MyStore.Service.Validators;
+using MyStore.Service.DTOs.OrderDTOs;
+using MyStore.Service.Validators.OrderDtoValidators;
 
 namespace MyStore.Service.Orders
 {

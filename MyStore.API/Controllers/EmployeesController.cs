@@ -1,6 +1,6 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using MyStore.Service.DTOs;
+using MyStore.Service.DTOs.EmployeeDTOs;
 using MyStore.Service.Employees;
 
 namespace MyStore.API.Controllers
@@ -8,8 +8,8 @@ namespace MyStore.API.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class EmployeesController(
-    IEmployeeService employeeService,
-    IValidator<EmployeeDto> validator) : ControllerBase
+        IEmployeeService employeeService,
+        IValidator<EmployeeDto> validator) : ControllerBase
     {
         // GET: api/employees
         [HttpGet]

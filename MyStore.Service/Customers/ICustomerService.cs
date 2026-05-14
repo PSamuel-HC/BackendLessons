@@ -1,4 +1,4 @@
-﻿using MyStore.Service.DTOs;
+﻿using MyStore.Service.DTOs.CustomerDTOs;
 
 namespace MyStore.Service.Customers
 {

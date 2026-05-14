@@ -7,10 +7,9 @@ using MyStore.Service.Employees;
 using MyStore.Service.Mapper;
 using MyStore.Service.Orders;
 using MyStore.Service.Products;
-using MyStore.Service.Validators;
 using System.Text.Json.Serialization;
 using FluentValidation;
-
+using MyStore.Service.Validators.CustomerDtoValidators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +27,7 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddValidatorsFromAssemblyContaining<CustomerCreateDtoValidator>();
-
+builder.Services.AddValidatorsFromAssemblyContaining<CustomerUpdateDtoValidator>();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
 

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using MyStore.API.Annotations.MyStore.API.Annotations;
 using MyStore.Service.DTOs;
 using MyStore.Service.Products;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace MyStore.API.Controllers
 {
@@ -31,9 +33,17 @@ namespace MyStore.API.Controllers
         [HttpPost]
         public async Task<ActionResult<ProductReadDto>> CreateProduct(ProductCreateDto dto)
         {
-           
-            ProductReadDto resultDto = await productService.CreateProduct(dto);
-            return CreatedAtAction(nameof(GetProducts), new { id = resultDto.Id }, resultDto);
+
+            try
+            {
+                ProductReadDto resultDto = await productService.CreateProduct(dto);
+                return CreatedAtAction(nameof(GetProducts), new { id = resultDto.Id }, resultDto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return BadRequest();
+            }
         }
 
 
@@ -42,9 +52,17 @@ namespace MyStore.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, ProductUpdateDto dto)
         {
-            await productService.UpdateProduct(id, dto);
+            try
+            {
+                await productService.UpdateProduct(id, dto);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return BadRequest();
+            }
 
-           return NoContent();
         }
 
         // DELETE: api/products/{id}
@@ -53,7 +71,7 @@ namespace MyStore.API.Controllers
         {
             await productService.DeleteProduct(id);
 
-           return NoContent();
+            return NoContent();
         }
 
 

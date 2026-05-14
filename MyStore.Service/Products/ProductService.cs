@@ -1,16 +1,24 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MyStore.Domain.Interfaces;
 using MyStore.Domain.Model;
 using MyStore.Service.DTOs;
+using MyStore.Service.Validators;
 
 namespace MyStore.Service.Products
 {
-    public class ProductService(IProductRepository repository, IMapper mapper) : IProductService
+    public class ProductService(
+        IProductRepository repository,
+        IMapper mapper,
+        ProductCreateDtoValidator validatorCreate,
+        ProductUpdateDtoValidator validatorUpdate
+        ) : IProductService
     {
         public async Task<ProductReadDto> CreateProduct(ProductCreateDto dto)
         {
-           Product p = await repository.Create(mapper.Map<Product>(dto));
-           return mapper.Map<ProductReadDto>(p);
+            validatorCreate.ValidateAndThrow(dto);
+            Product p = await repository.Create(mapper.Map<Product>(dto));
+            return mapper.Map<ProductReadDto>(p);
         }
 
         public async Task DeleteProduct(int id)
@@ -39,6 +47,7 @@ namespace MyStore.Service.Products
 
         public async Task UpdateProduct(int id, ProductUpdateDto dto)
         {
+            validatorUpdate.ValidateAndThrow(dto);
             Product? p = await repository.GetById(id);
 
             if (p == null) return;

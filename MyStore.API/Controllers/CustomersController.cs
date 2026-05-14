@@ -1,16 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MyStore.Service.DTOs;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyStore.Service.Customers;
+using MyStore.Service.DTOs;
 
 namespace MyStore.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class CustomersController(ICustomerService customerService) : ControllerBase
     {
 
         // GET: api/customers
         [HttpGet]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<ActionResult<IEnumerable<CustomerReadDto>>> GetCustomers()
         {
             IEnumerable<CustomerReadDto> dtos = await customerService.GetCustomersAsync();

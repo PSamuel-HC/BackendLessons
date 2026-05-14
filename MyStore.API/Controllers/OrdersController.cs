@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyStore.Service.DTOs;
 using MyStore.Service.Orders;
+using FluentValidation;
+using MyStore.Service.DTOs.OrderDTOs;
+
 
 namespace MyStore.API.Controllers
 {
@@ -29,8 +31,18 @@ namespace MyStore.API.Controllers
         [HttpPost]
         public async Task<ActionResult<OrderReadDto>> CreateOrder(OrderCreateDto dto)
         {
-            OrderReadDto order = await orderService.CreateOrderAsync(dto);
-            return Ok(order);
+            try
+            {
+                OrderReadDto order = await orderService.CreateOrderAsync(dto);
+                return CreatedAtAction(nameof(GetById), new { id = order.Id }, order);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new
+                {
+                    errors = ex.Errors.Select(e => e.ErrorMessage)
+                });
+            }
         }
 
         // PUT: api/orders/{id}

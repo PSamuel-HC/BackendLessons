@@ -1,12 +1,15 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using MyStore.Service.DTOs;
+using MyStore.Service.DTOs.EmployeeDTOs;
 using MyStore.Service.Employees;
 
 namespace MyStore.API.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class EmployeeController(IEmployeeService employeeService) : ControllerBase
+    public class EmployeesController(
+        IEmployeeService employeeService,
+        IValidator<EmployeeDto> validator) : ControllerBase
     {
         // GET: api/employees
         [HttpGet]
@@ -34,6 +37,10 @@ namespace MyStore.API.Controllers
         [HttpPost]
         public async Task<ActionResult<EmployeeReadDto>> CreateEmployee(EmployeeCreateDto dto)
         {
+            var result = await validator.ValidateAsync(dto);
+            if (!result.IsValid)
+                return BadRequest(result.Errors.Select(e => new { e.PropertyName, e.ErrorMessage }));
+
             EmployeeReadDto employee = await employeeService.CreateEmployeeAsync(dto);
             return CreatedAtAction(nameof(GetEmployees), new { id = employee.Id }, employee);
         }
@@ -42,25 +49,11 @@ namespace MyStore.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<EmployeeReadDto>> UpdateEmployee(int id, EmployeeUpdateDto dto)
         {
-            //// 1. Search if employee exists
-            //var employee = await _context.Employees.FindAsync(id);
-
-            //if (employee == null)
-            //return NotFound();
-
-            //// 2. Mapping: DTO -> Employee 
-            //employee.FirstName = dto.FirstName;
-            //employee.LastName = dto.LastName;
-            //employee.Role = dto.Role;
-            //employee.HourlyRate = dto.HourlyRate;
-            //employee.HireDate = DateTime.ParseExact(dto.HireDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
-            //// 3. Persist on DB
-            //await _context.SaveChangesAsync();
-
-            //// 4. Returning 204 No Content
-            //return NoContent();
-
+            var result = await validator.ValidateAsync(dto);
+            if (!result.IsValid)
+            {
+                return BadRequest(result.Errors.Select(e => new { e.PropertyName, e.ErrorMessage }));
+            }
 
             EmployeeReadDto? editedEmployee = await employeeService.UpdateEmployeeAsync(id, dto);
             if (editedEmployee == null)

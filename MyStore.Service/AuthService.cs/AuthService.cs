@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using MyStore.Service.DTOs.Authentication;
+using MyStore.Service.DTOs.AuthDTOs;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

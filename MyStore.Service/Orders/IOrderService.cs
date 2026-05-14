@@ -1,4 +1,4 @@
-﻿using MyStore.Service.DTOs;
+﻿using MyStore.Service.DTOs.OrderDTOs;
 
 namespace MyStore.Service.Orders
 {

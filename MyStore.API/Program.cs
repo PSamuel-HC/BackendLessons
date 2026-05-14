@@ -7,13 +7,15 @@ using MyStore.Service.Employees;
 using MyStore.Service.Mapper;
 using MyStore.Service.Orders;
 using MyStore.Service.Products;
-using MyStore.Service.Validators;
 using System.Text.Json.Serialization;
 using FluentValidation;
 using MyStore.Service.AuthService.cs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using MyStore.Service.Validators.CustomerDtoValidators;
+using MyStore.Service.Validators.OrderDtoValidators;
+using MyStore.Service.Validators.ProductDtoValidators;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,7 +34,10 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddValidatorsFromAssemblyContaining<CustomerCreateDtoValidator>();
-
+builder.Services.AddValidatorsFromAssemblyContaining<CustomerUpdateDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ProductCreateDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ProductUpdateDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<OrderCreateDtoValidators>();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
 

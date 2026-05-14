@@ -1,4 +1,4 @@
-﻿using MyStore.Service.DTOs;
+﻿using MyStore.Service.DTOs.EmployeeDTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;

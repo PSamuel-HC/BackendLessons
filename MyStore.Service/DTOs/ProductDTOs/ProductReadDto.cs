@@ -1,4 +1,4 @@
-﻿namespace MyStore.Service.DTOs
+﻿namespace MyStore.Service.DTOs.ProductDTOs
 {
     public class ProductReadDto
     {

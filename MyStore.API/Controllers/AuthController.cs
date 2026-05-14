@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyStore.Service.AuthService.cs;
-using MyStore.Service.DTOs.Authentication;
+using MyStore.Service.DTOs.AuthDTOs;
 
 namespace MyStore.API.Controllers
 {

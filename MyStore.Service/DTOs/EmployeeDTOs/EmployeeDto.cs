@@ -1,12 +1,12 @@
-namespace MyStore.Service.DTOs
+﻿namespace MyStore.Service.DTOs.EmployeeDTOs
+
 {
-    public class EmployeeUpdateDto
+    public abstract class EmployeeDto
     {
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public decimal HourlyRate { get; set; }
         public string HireDate { get; set; } = string.Empty;
-
     }
 }

@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MyStore.Domain.Interfaces;
 using MyStore.Domain.Model;
-using MyStore.Service.DTOs;
+using MyStore.Service.DTOs.OrderDTOs;
+using MyStore.Service.Validators.OrderDtoValidators;
 
 namespace MyStore.Service.Orders
 {
-    public class OrderService(IOrderRepository repository, IMapper mapper) : IOrderService
+    public class OrderService(IOrderRepository repository, IMapper mapper, OrderCreateDtoValidators validator) : IOrderService
     {
         public async Task<IEnumerable<OrderReadDto>> GetOrdersAsync()
         {
@@ -21,6 +23,9 @@ namespace MyStore.Service.Orders
 
         public async Task<OrderReadDto> CreateOrderAsync(OrderCreateDto dto)
         {
+
+            validator.ValidateAndThrow(dto);
+
             var order = mapper.Map<Order>(dto);
             await repository.AddAsync(order);
             await repository.SaveChangesAsync();

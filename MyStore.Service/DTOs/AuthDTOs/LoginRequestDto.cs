@@ -1,4 +1,4 @@
-﻿namespace MyStore.Service.DTOs.Authentication
+﻿namespace MyStore.Service.DTOs.AuthDTOs
 {
     public class LoginRequestDto
     {

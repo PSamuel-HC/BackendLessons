@@ -32,7 +32,7 @@ namespace MyStore.Service.Products
 
         public async Task<ProductReadDto> GetProduct(int id)
         {
-            Product p = await repository.GetById(id);
+            Product? p = await repository.GetById(id);
             if (p == null) { }
             return mapper.Map<ProductReadDto>(p);
 

@@ -1,21 +1,23 @@
+using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using MyStore.Domain.Interfaces;
 using MyStore.Infrastructure;
+using MyStore.Infrastructure.PostgreExtension;
 using MyStore.Infrastructure.Repositories;
+using MyStore.Infrastructure.Vector;
+using MyStore.Service.AuthService.cs;
 using MyStore.Service.Customers;
 using MyStore.Service.Employees;
 using MyStore.Service.Mapper;
 using MyStore.Service.Orders;
 using MyStore.Service.Products;
-using System.Text.Json.Serialization;
-using FluentValidation;
-using MyStore.Service.AuthService.cs;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using MyStore.Service.Validators.CustomerDtoValidators;
 using MyStore.Service.Validators.OrderDtoValidators;
 using MyStore.Service.Validators.ProductDtoValidators;
+using System.Text;
+using System.Text.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +29,13 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<MyStoreDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+
+builder.Services.AddPostgresVectorDb(builder.Configuration);
+
+
+builder.Services.AddScoped<IVectorSearchRepository, ProductVectorRepository>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => {
@@ -93,6 +102,20 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var initializer = scope.ServiceProvider
+//        .GetRequiredService<VectorDbInitializer>();
+//    await initializer.InitializeAsync();
+//}
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<VectorDbContext>();
+    await db.Database.MigrateAsync();
+}
+
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

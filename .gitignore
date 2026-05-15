@@ -51,6 +51,9 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 
+## C# Dev kit
+*.csproj.lscache
+
 ## Web/Local Secrets (Uncomment if needed)
 # appsettings.Development.json
 # .env

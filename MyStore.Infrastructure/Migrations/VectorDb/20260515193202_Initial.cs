@@ -22,7 +22,7 @@ namespace MyStore.Infrastructure.Migrations.VectorDb
                     ProductId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(type: "text", nullable: false),
-                    Embedding = table.Column<Pgvector.Vector>(type: "vector(3)", nullable: false)
+                    Embedding = table.Column<Vector>(type: "vector(3)", nullable: false)
                 },
                 constraints: table =>
                 {

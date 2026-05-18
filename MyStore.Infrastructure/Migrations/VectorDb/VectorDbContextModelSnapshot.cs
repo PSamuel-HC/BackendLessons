@@ -35,7 +35,7 @@ namespace MyStore.Infrastructure.Migrations.VectorDb
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Pgvector.Vector>("Embedding")
+                    b.Property<Vector>("Embedding")
                         .IsRequired()
                         .HasColumnType("vector(3)");
 
